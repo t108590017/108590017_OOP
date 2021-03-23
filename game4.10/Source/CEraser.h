@@ -21,6 +21,8 @@ namespace game_framework {
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetAttack(bool flag);	    // 設定是否攻擊
+		void SetWeapon(bool flag);	    // 設定是否換武器
+
 		void SetFaceLeft(bool flag);	// 設定是否面相左邊
 		void SetFaceRight(bool flag);	// 設定是否面相右邊
 		void SetXY(int nx, int ny);		// 設定擦子左上角座標
@@ -38,6 +40,8 @@ namespace game_framework {
 		bool isAttack;			    // 是否正在攻擊
 		bool isFacingLeft;			// 是否面相左邊
 		bool isFacingRight;			// 是否面相右邊
+		bool isSwichingWeapon;			// 是否面相右邊
+
 
 
 	};

@@ -104,12 +104,19 @@ namespace game_framework {
 	{
 		isFacingRight = flag;
 	}
+	void CEraser::SetWeapon(bool flag)
+	{
+		isSwichingWeapon = flag;
+		
+	}
+
 	void CEraser::OnShow()
 	{
-
+		
 
 
 		if (isMovingRight) {
+
 			if (isAttack) {
 				Attack.SetTopLeft(x, y);
 				Attack.deleteBMP();

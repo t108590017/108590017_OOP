@@ -313,6 +313,8 @@ namespace game_framework {
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
 		const char KEY_ATTACK = 0x5A; // keyboard的Z按鍵
+		const char KEY_SWITCH = 0x58; // keyboard的X按鍵
+
 		if (nChar == KEY_LEFT) {
 			eraser.SetMovingLeft(true);
 			eraser.SetFaceLeft(false);
@@ -326,8 +328,12 @@ namespace game_framework {
 			eraser.SetMovingUp(true);
 		if (nChar == KEY_DOWN)
 			eraser.SetMovingDown(true);
-		if (nChar == KEY_ATTACK)
+		if (nChar == KEY_ATTACK) {
 			eraser.SetAttack(true);
+		}
+		if (nChar == KEY_SWITCH) {
+			eraser.SetWeapon(true);
+		}
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -337,6 +343,8 @@ namespace game_framework {
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
 		const char KEY_ATTACK = 0x5A; // keyboard的Z按鍵
+		const char KEY_SWITCH = 0x58; // keyboard的X按鍵
+
 
 		if (nChar == KEY_LEFT) {
 			eraser.SetMovingLeft(false);
@@ -356,6 +364,8 @@ namespace game_framework {
 			eraser.SetMovingDown(false);
 		if (nChar == KEY_ATTACK)
 			eraser.SetAttack(false);
+
+
 	}
 
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作

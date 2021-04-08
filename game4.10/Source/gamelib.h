@@ -207,7 +207,12 @@ public:
 	void  ShowBitmap(CMovingBitmap &);	// 將圖貼到到另一張圖上 (僅供特殊用途)
 	int   Top();						// 取得圖形的左上角的 y 座標
 	int   Width();						// 取得圖形的寬度
+	void  Reset();					// 重設播放順序回到第一張圖形
+
+
+
 protected:
+	list<CMovingBitmap>				bmp2;			// list of CMovingBitmap
 	CRect    location;			// location of the bitmap
 	bool     isBitmapLoaded;	// whether a bitmap has been loaded
 	unsigned SurfaceID;			// the surface id of this bitmap

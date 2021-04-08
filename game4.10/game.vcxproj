@@ -323,14 +323,34 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Bitmaps\background.bmp" />
+    <Image Include="Bitmaps\blockBlue.bmp" />
+    <Image Include="Bitmaps\blockGreen.bmp" />
+    <Image Include="Bitmaps\blockYellow.bmp" />
     <Image Include="Bitmaps\cartman_fire.bmp" />
+    <Image Include="Bitmaps\cartman_fire_L.bmp" />
     <Image Include="Bitmaps\cartman_rifle.bmp" />
+    <Image Include="Bitmaps\cartman_rifle_L.bmp" />
     <Image Include="Bitmaps\cartman_rocket.bmp" />
+    <Image Include="Bitmaps\cartman_rocket_L.bmp" />
     <Image Include="Bitmaps\cartman_stick1.bmp" />
     <Image Include="Bitmaps\cartman_stick1_L.bmp" />
     <Image Include="Bitmaps\cartman_stick2.bmp" />
     <Image Include="Bitmaps\cartman_stick2_L.bmp" />
     <Image Include="Bitmaps\cartman_Vchip.bmp" />
+    <Image Include="Bitmaps\choose.bmp" />
+    <Image Include="Bitmaps\enemy.bmp" />
+    <Image Include="Bitmaps\enemy_L.bmp" />
+    <Image Include="Bitmaps\enemy_walk.bmp" />
+    <Image Include="Bitmaps\energy1.bmp" />
+    <Image Include="Bitmaps\menu.bmp" />
+    <Image Include="res\bitmap3.bmp" />
+    <Image Include="res\enemy2.bmp" />
+    <Image Include="res\energy2.bmp" />
+    <Image Include="res\energy3.bmp" />
+    <Image Include="res\energy4.bmp" />
+    <Image Include="res\energy5.bmp" />
+    <Image Include="res\energy6.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

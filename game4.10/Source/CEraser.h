@@ -21,10 +21,15 @@ namespace game_framework {
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetAttack(bool flag);	    // 設定是否攻擊
-		void SetWeapon(bool flag);	    // 設定是否換武器
-
 		void SetFaceLeft(bool flag);	// 設定是否面相左邊
 		void SetFaceRight(bool flag);	// 設定是否面相右邊
+		void SetWeaponA(bool flag);	// 設定是否換棍子
+		void SetWeaponS(bool flag);		// 設定是否換噴火
+		void SetWeaponD(bool flag);	// 設定是否換火箭
+		void SetWeaponF (bool flag);	// 設定是否換槍
+		bool isAttacking();
+		bool GetDirection();
+
 		void SetXY(int nx, int ny);		// 設定擦子左上角座標
 
 	protected:
@@ -32,6 +37,7 @@ namespace game_framework {
 		CAnimation gotRight;		// 往右的動畫
 		CAnimation gotLeft;		    // 往左的動畫
 		CAnimation Attack;		    // 往左的動畫
+		bool Direction;				// 是否在右   右為true左為false
 		int x, y;					// 擦子左上角座標
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
@@ -40,7 +46,11 @@ namespace game_framework {
 		bool isAttack;			    // 是否正在攻擊
 		bool isFacingLeft;			// 是否面相左邊
 		bool isFacingRight;			// 是否面相右邊
-		bool isSwichingWeapon;			// 是否面相右邊
+		bool isStick;				// 是否是棍子
+		bool isRifle;				// 是否是槍
+		bool isFire;				// 是否是噴火
+		bool isRocket;				// 是否是火箭
+		bool isVchip;				// 是否是電
 
 
 

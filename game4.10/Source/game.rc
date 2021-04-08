@@ -106,9 +106,9 @@ IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
 IDB_Cartman_fire        BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_fire.bmp"
 
-IDB_BITMAP4             BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_rifle.bmp"
+IDB_cartman_rifle       BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_rifle.bmp"
 
-IDB_BITMAP5             BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_rocket.bmp"
+IDB_cartman_rocket      BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_rocket.bmp"
 
 IDB_Cartman_stick1      BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_stick1.bmp"
 
@@ -118,7 +118,43 @@ IDB_Cartman_stick2      BITMAP                  "C:\\Users\\owner\\Downloads\\OO
 
 IDB_Cartman_stick2_L    BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_stick2_L.bmp"
 
-IDB_BITMAP10            BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_Vchip.bmp"
+IDB_cartman_Vchip       BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_Vchip.bmp"
+
+IDB_Cartman_fire_L      BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_fire_L.bmp"
+
+IDB_cartman_rifle_L     BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_rifle_L.bmp"
+
+IDB_cartman_rocket_L    BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\cartman_rocket_L.bmp"
+
+IDB_MENU                BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\menu.bmp"
+
+IDB_Choose              BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\choose.bmp"
+
+IDB_enemy1              BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\enemy_walk.bmp"
+
+IDB_energy1             BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\energy1.bmp"
+
+IDB_energy2             BITMAP                  "..\\res\\energy2.bmp"
+
+IDB_energy3             BITMAP                  "..\\res\\energy3.bmp"
+
+IDB_energy4             BITMAP                  "..\\res\\energy4.bmp"
+
+IDB_energy5             BITMAP                  "..\\res\\energy5.bmp"
+
+IDB_energy6             BITMAP                  "..\\res\\energy6.bmp"
+
+IDB_enemy1_S            BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\enemy.bmp"
+
+IDB_enemy1_L            BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\enemy_L.bmp"
+
+IDB_BLUE                BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\blockBlue.bmp"
+
+IDB_GREEN               BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\blockGreen.bmp"
+
+IDB_YELLOW              BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\blockYellow.bmp"
+
+IDB_Map                 BITMAP                  "C:\\Users\\owner\\Downloads\\OOP遊戲\\game4.10\\Bitmaps\\background.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

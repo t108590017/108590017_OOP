@@ -36,14 +36,32 @@
 #define IDB_BITMAP2                     156
 #define IDB_LOADING                     156
 #define IDB_Cartman_fire                157
-#define IDB_BITMAP4                     158
-#define IDB_BITMAP5                     159
+#define IDB_cartman_rifle               158
+#define IDB_cartman_rocket              159
 #define IDB_Cartman_stick1              160
 #define IDB_Cartman_stick1_L            161
 #define IDB_Cartman_stick2              162
-#define IDB_BITMAP9                     163
 #define IDB_Cartman_stick2_L            163
-#define IDB_BITMAP10                    164
+#define IDB_cartman_Vchip               164
+#define IDB_Cartman_fire_L              165
+#define IDB_cartman_rifle_L             166
+#define IDB_cartman_rocket_L            167
+#define IDB_MENU                        168
+#define IDB_Choose                      171
+#define IDB_enemy1                      172
+#define IDB_energy1                     178
+#define IDB_energy2                     179
+#define IDB_energy3                     180
+#define IDB_energy4                     181
+#define IDB_energy5                     182
+#define IDB_energy6                     183
+#define IDB_enemy1_S                    184
+#define IDB_enemy1_L                    185
+#define IDB_BLUE                        187
+#define IDB_GREEN                       188
+#define IDB_YELLOW                      189
+#define IDB_BITMAP4                     191
+#define IDB_Map                         191
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -56,7 +74,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        165
+#define _APS_NEXT_RESOURCE_VALUE        192
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

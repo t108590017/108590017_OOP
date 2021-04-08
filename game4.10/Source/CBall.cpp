@@ -15,7 +15,8 @@ namespace game_framework {
 	CBall::CBall()
 	{
 		is_alive = true;
-		x = y = dx = dy = index = delay_counter = 0;
+		x = y = dx = dy = index =0;
+		delay_counter = 0;
 	}
 
 	bool CBall::HitEraser(CEraser *eraser)
@@ -25,12 +26,12 @@ namespace game_framework {
 			eraser->GetX2(), eraser->GetY2());
 	}
 
-	bool CBall::HitRectangle(int tx1, int ty1, int tx2, int ty2)
-	{
+	bool CBall::HitRectangle(int tx1, int ty1, int tx2, int ty2){
 		int x1 = x + dx;				// 球的左上角x座標
 		int y1 = y + dy;				// 球的左上角y座標
 		int x2 = x1 + bmp.Width();	// 球的右下角x座標
 		int y2 = y1 + bmp.Height();	// 球的右下角y座標
+		
 									//
 									// 檢測球的矩形與參數矩形是否有交集
 									//
@@ -44,8 +45,11 @@ namespace game_framework {
 
 	void CBall::LoadBitmap()
 	{
-		bmp.LoadBitmap(IDB_BALL, RGB(0, 0, 0));			// 載入球的圖形
+		bmp.AddBitmap(IDB_enemy1, RGB(181, 230, 29));			// 載入球的圖形
+		
+
 		bmp_center.LoadBitmap(IDB_CENTER, RGB(0, 0, 0));	// 載入球圓心的圖形
+
 	}
 
 	void CBall::OnMove()
@@ -58,18 +62,32 @@ namespace game_framework {
 			//
 			// 計算球向對於圓心的位移量dx, dy
 			//
-			const int STEPS = 18;
-			static const int DIFFX[] = { 35, 32, 26, 17, 6, -6, -17, -26, -32, -34, -32, -26, -17, -6, 6, 17, 26, 32, };
-			static const int DIFFY[] = { 0, 11, 22, 30, 34, 34, 30, 22, 11, 0, -11, -22, -30, -34, -34, -30, -22, -11, };
+			int i = 0;
+			const int STEPS = 100;
+			static const int DIFFX[] = { 0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60,60,60,60,60,60,60,60,60,60,60,57,54,51,48,45,42,39,36,33,30,27,24,21,18,15,12,9,6,3,0,-3,-6,-9,-12,-15,-18,-21,-24,-27,-30,-33,-36,-39,-42,-45,-48,-51,-54,-57,-60,-60,-60,-60,-60,-60,-60,-60,-60,-60,-57,-54,-51,-48,-45,-42,-39,-36,-33,-30,-27,-24,-21,-18,-15,-12,-9,-6,-3 };
+			static const int DIFFY[] = { 0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, };
 			index++;
 			if (index >= STEPS)
 				index = 0;
 			dx = DIFFX[index];
 			dy = DIFFY[index];
+
+			if ((index >= 20 &&index<=30)|| index >= 70 && index <= 80) {
+				bmp.deleteBMP();
+				bmp.AddBitmap(IDB_enemy1_S, RGB(181, 230, 29));
+			}
+			else if  (index > 30 && index < 70) {
+				bmp.deleteBMP();
+				bmp.AddBitmap(IDB_enemy1_L, RGB(181, 230, 29));
+			}
+			else {
+				bmp.deleteBMP();
+				bmp.AddBitmap(IDB_enemy1, RGB(181, 230, 29));
+			}
 		}
 	}
 
-	void CBall::SetDelay(int d)
+	void CBall::SetDelay(double d)
 	{
 		delay = d;
 	}
@@ -88,7 +106,7 @@ namespace game_framework {
 	{
 		if (is_alive) {
 			bmp.SetTopLeft(x + dx, y + dy);
-			bmp.ShowBitmap();
+			bmp.OnShow();
 			bmp_center.SetTopLeft(x, y);
 			bmp_center.ShowBitmap();
 		}

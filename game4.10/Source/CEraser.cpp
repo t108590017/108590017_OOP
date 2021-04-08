@@ -11,6 +11,7 @@ namespace game_framework {
 	// CEraser: Eraser class
 	/////////////////////////////////////////////////////////////////////////////
 
+
 	CEraser::CEraser()
 	{
 		Initialize();
@@ -28,12 +29,12 @@ namespace game_framework {
 
 	int CEraser::GetX2()
 	{
-		return x + animation.Width();
+		return x + Attack.Width();
 	}
 
 	int CEraser::GetY2()
 	{
-		return y + animation.Height();
+		return y + Attack.Height();
 	}
 
 	void CEraser::Initialize()
@@ -104,68 +105,176 @@ namespace game_framework {
 	{
 		isFacingRight = flag;
 	}
-	void CEraser::SetWeapon(bool flag)
-	{
-		isSwichingWeapon = flag;
-		
+	void CEraser::SetWeaponA(bool flag){
+		isStick = true;
+		isRifle = false;				
+		isFire = false;		
+		isRocket = false;
+
 	}
 
-	void CEraser::OnShow()
+	void CEraser::SetWeaponS(bool flag)
 	{
-		
+		isStick = false;
+		isRifle = true;
+		isFire = false;
+		isRocket = false;
+	}
+	void CEraser::SetWeaponD(bool flag)
+	{
+		isStick = false;
+		isRifle = false;
+		isFire = true;
+		isRocket = false;
+	}	
+	void CEraser::SetWeaponF(bool flag)
+	{
+		isStick = false;
+		isRifle = false;
+		isFire = false;
+		isRocket = true;
+	}	
+	bool CEraser::isAttacking() {
+		return isAttack;
+	}
 
+	void CEraser::OnShow(){
+		if (isStick) {
+			if (isMovingRight|| isFacingRight) {
+				if (isAttack) {
+					Attack.SetTopLeft(x, y);
+					Attack.deleteBMP();
+					Attack.AddBitmap(IDB_Cartman_stick2, RGB(181, 230, 29));
+					Attack.OnShow();
+				}
+				else {
+					gotRight.SetTopLeft(x, y);
+					gotRight.deleteBMP();
+					gotRight.AddBitmap(IDB_Cartman_stick1, RGB(181, 230, 29));
+					gotRight.OnShow();
+				}
 
-		if (isMovingRight) {
-
-			if (isAttack) {
-				Attack.SetTopLeft(x, y);
-				Attack.deleteBMP();
-				Attack.AddBitmap(IDB_Cartman_stick2, RGB(181, 230, 29));
-				Attack.OnShow();
 			}
-			else {
-				gotRight.SetTopLeft(x, y);
-				gotRight.AddBitmap(IDB_Cartman_stick1, RGB(181, 230, 29));
-				gotRight.OnShow();
+			else if (isMovingLeft || isFacingLeft) {
+				if (isAttack) {
+					Attack.SetTopLeft(x, y);
+					Attack.deleteBMP();
+					Attack.AddBitmap(IDB_Cartman_stick2_L, RGB(181, 230, 29));
+					Attack.OnShow();
+				}
+				else {
+					gotLeft.SetTopLeft(x, y);
+					gotLeft.OnShow();
+				}
+
 			}
-			animation.deleteBMP();
-			animation.AddBitmap(IDB_Cartman_stick1, RGB(181, 230, 29));
+
 		}
-		else if (isMovingLeft) {
-			if (isAttack) {
-				Attack.SetTopLeft(x, y);
-				Attack.deleteBMP();
-				Attack.AddBitmap(IDB_Cartman_stick2_L, RGB(181, 230, 29));
-				Attack.OnShow();
+		else if (isRifle) {
+			if (isMovingRight || isFacingRight) {
+				if (isAttack) {
+					Attack.SetTopLeft(x, y);
+					Attack.deleteBMP();
+					Attack.AddBitmap(IDB_cartman_rifle, RGB(181, 230, 29));
+					Attack.OnShow();
+				}
+				else {
+					gotRight.SetTopLeft(x, y);
+					gotRight.deleteBMP();
+					gotRight.AddBitmap(IDB_cartman_rifle, RGB(181, 230, 29));
+					gotRight.OnShow();
+				}
+				animation.deleteBMP();
+				animation.AddBitmap(IDB_cartman_rifle, RGB(181, 230, 29));
 			}
-			else {
-				gotLeft.SetTopLeft(x, y);
-				gotLeft.OnShow();
-			}
+			else if (isMovingLeft || isFacingLeft) {
+				if (isAttack) {
+					Attack.SetTopLeft(x, y);
+					Attack.deleteBMP();
+					Attack.AddBitmap(IDB_cartman_rifle_L, RGB(181, 230, 29));
+					Attack.OnShow();
+				}
+				else {
+					gotRight.SetTopLeft(x, y);
+					gotRight.deleteBMP();
+					gotRight.AddBitmap(IDB_cartman_rifle_L, RGB(181, 230, 29));
+					gotRight.OnShow();
+				}
 
-			animation.deleteBMP();
-			animation.AddBitmap(IDB_Cartman_stick1_L, RGB(181, 230, 29));
+				animation.deleteBMP();
+				animation.AddBitmap(IDB_cartman_rifle_L, RGB(181, 230, 29));
+			}
 		}
-		else {
-			if (isAttack && isFacingLeft) {
-				Attack.SetTopLeft(x, y);
-				Attack.deleteBMP();
-				Attack.AddBitmap(IDB_Cartman_stick2_L, RGB(181, 230, 29));
-				Attack.OnShow();
+		else if (isFire) {
+			if (isMovingRight||isFacingRight) {
+				if (isAttack) {
+					Attack.SetTopLeft(x, y);
+					Attack.deleteBMP();
+					Attack.AddBitmap(IDB_Cartman_fire, RGB(181, 230, 29));
+					Attack.OnShow();
+				}
+				else {
+					gotRight.SetTopLeft(x, y);
+					gotRight.deleteBMP();
+					gotRight.AddBitmap(IDB_Cartman_fire, RGB(181, 230, 29));
+					gotRight.OnShow();
+				}
+				animation.deleteBMP();
+				animation.AddBitmap(IDB_Cartman_fire, RGB(181, 230, 29));
 			}
-			else if (isAttack && isFacingRight) {
-				Attack.SetTopLeft(x, y);
-				Attack.deleteBMP();
-				Attack.AddBitmap(IDB_Cartman_stick2, RGB(181, 230, 29));
-				Attack.OnShow();
-			}
-			else {
-				animation.SetTopLeft(x, y);
-				animation.OnShow();
-			}
+			else if (isMovingLeft || isFacingLeft) {
+				if (isAttack) {
+					Attack.SetTopLeft(x, y);
+					Attack.deleteBMP();
+					Attack.AddBitmap(IDB_Cartman_fire_L, RGB(181, 230, 29));
+					Attack.OnShow();
+				}
+				else {
+					gotRight.SetTopLeft(x, y);
+					gotRight.deleteBMP();
+					gotRight.AddBitmap(IDB_Cartman_fire_L, RGB(181, 230, 29));
+					gotRight.OnShow();
+				}
 
+				animation.deleteBMP();
+				animation.AddBitmap(IDB_Cartman_fire_L, RGB(181, 230, 29));
+			}
 		}
+		else if (isRocket) {
+			if (isMovingRight || isFacingRight) {
+				if (isAttack) {
+					Attack.SetTopLeft(x, y);
+					Attack.deleteBMP();
+					Attack.AddBitmap(IDB_cartman_rocket, RGB(181, 230, 29));
+					Attack.OnShow();
+				}
+				else {
+					gotRight.SetTopLeft(x, y);
+					gotRight.deleteBMP();
+					gotRight.AddBitmap(IDB_cartman_rocket, RGB(181, 230, 29));
+					gotRight.OnShow();
+				}
+				animation.deleteBMP();
+				animation.AddBitmap(IDB_cartman_rocket, RGB(181, 230, 29));
+			}
+			else if (isMovingLeft || isFacingLeft) {
+				if (isAttack) {
+					Attack.SetTopLeft(x, y);
+					Attack.deleteBMP();
+					Attack.AddBitmap(IDB_cartman_rocket_L, RGB(181, 230, 29));
+					Attack.OnShow();
+				}
+				else {
+					gotRight.SetTopLeft(x, y);
+					gotRight.deleteBMP();
+					gotRight.AddBitmap(IDB_cartman_rocket_L, RGB(181, 230, 29));
+					gotRight.OnShow();
+				}
 
+				animation.deleteBMP();
+				animation.AddBitmap(IDB_cartman_rocket_L, RGB(181, 230, 29));
+			}
+		}
 	}
 
 }

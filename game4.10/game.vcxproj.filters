@@ -198,5 +198,65 @@
     <Image Include="Bitmaps\cartman_Vchip.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Bitmaps\cartman_fire_L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\cartman_rifle_L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\cartman_rocket_L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\menu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\choose.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\enemy_walk.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\enemy.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\energy1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\energy2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\energy3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\energy4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\energy5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\energy6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\enemy2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\enemy_L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\blockBlue.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\blockGreen.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\blockYellow.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\background.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

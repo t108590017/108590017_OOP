@@ -39,7 +39,7 @@ namespace game_framework {
 	void CEraser::Initialize()
 	{
 		const int X_POS = 0;
-		const int Y_POS = 0;
+		const int Y_POS = 1356;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
@@ -56,7 +56,7 @@ namespace game_framework {
 
 	void CEraser::OnMove(GameMap* m)
 	{
-		const int STEP_SIZE = 10;
+		const int STEP_SIZE = 20;
 		animation.OnMove();
 		if (isMovingLeft) {
 			if (m->IsEmpty(x - STEP_SIZE, y))
@@ -70,7 +70,7 @@ namespace game_framework {
 			y +=  30;
 		if (isJumping) {
 			int a = 0;
-			if (m->IsEmpty(x, y - STEP_SIZE-58)) {
+			if (m->IsEmpty(x, y - STEP_SIZE)) {
 				a -= STEP_SIZE;
 				y -= 40;
 			}
@@ -93,14 +93,14 @@ namespace game_framework {
 			m->SetMovingLeft(false);
 		}
 
-		if (m->ScreenY(y) > 300 && isMovingDown) {   //角色走過畫面y超過300
+		if (m->ScreenY(y) > 300) {   //角色走過畫面y超過300
 			m->SetMovingDown(true);					 //畫面開始向下
 		}
 		else {
 			m->SetMovingDown(false);
 		}
 
-		if (m->ScreenY(y) < 100 && isMovingUp) {		 //角色走過畫面y小於100
+		if (m->ScreenY(y) < 100) {		 //角色走過畫面y小於100
 			m->SetMovingUp(true);					 //畫面開始向上
 		}
 		else {

@@ -158,9 +158,13 @@ IDB_Map                 BITMAP                  "..\\Bitmaps\\background.bmp"
 
 IDB_FINISH              BITMAP                  "..\\Bitmaps\\finish.bmp"
 
-IDB_BLOCK               BITMAP                  "..\Bitmaps\\block1.bmp"
+IDB_BLOCK               BITMAP                  "..\\Bitmaps\\block1.bmp"
 
 IDB_BLOCK2              BITMAP                  "..\\res\\block1.bmp"
+
+IDB_FLOOR               BITMAP                  "C:\\Users\\LAB1223\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\floor.bmp"
+
+IDB_FLOOR_D             BITMAP                  "C:\\Users\\LAB1223\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\floor_D.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

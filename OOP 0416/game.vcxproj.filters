@@ -273,5 +273,11 @@
     <Image Include="res\block1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Bitmaps\floor.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\floor_D.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

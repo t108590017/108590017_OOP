@@ -32,6 +32,7 @@ namespace game_framework {
 		bool isAttacking();
 		bool GetDirection();
 		bool isJump(bool jump);
+		bool hitGoal1(GameMap* m);
 		void SetXY(int nx, int ny);		// 設定擦子左上角座標
 
 	protected:
@@ -54,6 +55,8 @@ namespace game_framework {
 		bool isFire;				// 是否是噴火
 		bool isRocket;				// 是否是火箭
 		bool isVchip;				// 是否是電
+		bool isGoal;				// 是否是到目標
+
 
 
 

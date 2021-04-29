@@ -59,24 +59,25 @@ namespace game_framework {
 		const int STEP_SIZE = 20;
 		animation.OnMove();
 		if (isMovingLeft) {
-			if (m->IsEmpty(x - STEP_SIZE, y))
+			if ((m->IsEmpty(x - STEP_SIZE, y))==1 || (m->IsEmpty(x - STEP_SIZE, y)) == 4 || (m->IsEmpty(x - STEP_SIZE, y)) == 5)
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight) {
-			if (m->IsEmpty(x + STEP_SIZE+50, y))
+			if ((m->IsEmpty(x + STEP_SIZE+50, y))==1 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 4 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 5)
 				x += STEP_SIZE;
 		}
-		if (m->IsEmpty(x , y+ STEP_SIZE+58))
-			y +=  30;
+		if (((m->IsEmpty(x, y+ STEP_SIZE+54))==1)|| ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 5))
+			y +=  20;
 		if (isJumping) {
 			int a = 0;
-			if (m->IsEmpty(x, y - STEP_SIZE)) {
+			if (m->IsEmpty(x, y - STEP_SIZE ) == 1|| m->IsEmpty(x, y - STEP_SIZE) == 5) {
 				a -= STEP_SIZE;
 				y -= 40;
 			}
 			if (a == -30)
 				isJumping = false;
 		}
+
 
 
 		if (m->ScreenX(x) > 300 && isMovingRight) {  //角色走過畫面x超過480 
@@ -111,7 +112,13 @@ namespace game_framework {
 
 
 
-	
+	bool CEraser::hitGoal1( GameMap* m) {
+		if ((m->IsEmpty(x - 20, y)) == 5 || (m->IsEmpty(x + 20, y)) == 5) {
+			return TRUE;
+		}
+		else
+			return FALSE;
+	}
 
 	void CEraser::SetMovingDown(bool flag)
 	{

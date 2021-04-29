@@ -295,9 +295,12 @@ namespace game_framework {
 			hits_left.Add(-1);
 
 		}
-		if (!ball[0].IsAlive() && !ball[1].IsAlive() && !ball[2].IsAlive() && !ball[3].IsAlive()) {
-			CAudio::Instance()->Play(AUDIO_END);			// 撥放 WAVE
-			GotoGameState(GAME_STATE_OVER);
+		if (eraser.hitGoal1(&gameMap)==TRUE) {
+			//CAudio::Instance()->Play(AUDIO_END);			// 撥放 WAVE
+			eraser.SetXY(0, 1356);
+			gameMap.level+=1;
+			gameMap.SetMapXY(0, 1356);
+			GotoGameState(GAME_STATE_2);
 		}
 		gameMap.OnMove();
 
@@ -326,6 +329,8 @@ namespace game_framework {
 		for (i = 0; i < NUMBALLS; i++)
 			ball[i].LoadBitmap();								// 載入第i個球的圖形*/
 		eraser.LoadBitmap();
+		eraser.SetXY(0, 1356);
+
 		energyBar.AddBitmap(IDB_energy1);
 		gameMap.LoadBitmap();
 		background.LoadBitmap(IDB_Map);					// 載入背景的圖形
@@ -497,4 +502,62 @@ namespace game_framework {
 
 
 	}
+	/////////////////////////////////////////////////////////////////////////////
+	// 這個class為遊戲第二關畫面
+	/////////////////////////////////////////////////////////////////////////////
+
+	CGameState2::CGameState2(CGame* g)
+		: CGameState(g)
+	{
+	}
+
+	void CGameState2::OnMove()
+	{
+		counter--;
+		if (counter < 0) {
+			GotoGameState(GAME_STATE_RUN);
+		}
+	}
+
+	void CGameState2::OnBeginState()
+	{
+		counter = 30 * 2; // 5 seconds
+	}
+
+	void CGameState2::OnInit()
+	{
+		//
+		// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
+		//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
+		//
+		ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
+		//
+		// 開始載入資料
+		//
+		finish.AddBitmap(IDB_FINISH);
+
+		//
+		// 最終進度為100%
+		//
+
+		ShowInitProgress(100);
+
+	}
+
+	void CGameState2::OnShow()
+	{
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC
+		CFont f, * fp;
+		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(255, 255, 0));
+		char str[80];								// Demo 數字對字串的轉換
+		sprintf(str, "Level %d",gameMap.getLevel());
+		pDC->TextOut(240, 210, str);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+
+	}
+
 }

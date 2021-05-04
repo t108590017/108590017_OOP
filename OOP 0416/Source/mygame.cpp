@@ -298,8 +298,9 @@ namespace game_framework {
 		if (eraser.hitGoal1(&gameMap)==TRUE) {
 			//CAudio::Instance()->Play(AUDIO_END);			// ¼·©ñ WAVE
 			eraser.SetXY(0, 1356);
-			gameMap.level+=1;
 			gameMap.SetMapXY(0, 1356);
+			gameMap.setLevel();
+			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
 		}
 		gameMap.OnMove();

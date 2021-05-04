@@ -326,8 +326,10 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Bitmaps\6block.bmp" />
     <Image Include="Bitmaps\background.bmp" />
     <Image Include="Bitmaps\block1.bmp" />
+    <Image Include="Bitmaps\blockBall.bmp" />
     <Image Include="Bitmaps\blockBlue.bmp" />
     <Image Include="Bitmaps\blockGreen.bmp" />
     <Image Include="Bitmaps\blockYellow.bmp" />
@@ -352,6 +354,7 @@
     <Image Include="Bitmaps\floor_D.bmp" />
     <Image Include="Bitmaps\menu.bmp" />
     <Image Include="res\bitmap3.bmp" />
+    <Image Include="res\bitmap5.bmp" />
     <Image Include="res\block1.bmp" />
     <Image Include="res\enemy2.bmp" />
     <Image Include="res\energy2.bmp" />

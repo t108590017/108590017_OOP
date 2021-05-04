@@ -166,6 +166,10 @@ IDB_FLOOR               BITMAP                  "..\\Bitmaps\\floor.bmp"
 
 IDB_FLOOR_D             BITMAP                  "..\\Bitmaps\\floor_D.bmp"
 
+IDB_block6              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\6block.bmp"
+
+IDB_Circle              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\blockBall.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

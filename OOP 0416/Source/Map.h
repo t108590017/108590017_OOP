@@ -3,7 +3,6 @@ namespace game_framework {
 	class GameMap {
 	public:
 		GameMap();
-		int level=1;
 		void LoadBitmap();
 		void OnShow();
 		void OnMove();
@@ -12,6 +11,7 @@ namespace game_framework {
 		int ScreenY(int y);
 		int getLevel();
 		void setLevel();
+		void changeLevel();
 		void SetMapXY(int nx,int ny);
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
@@ -19,7 +19,7 @@ namespace game_framework {
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		//~GameMap();
 	protected:
-		CMovingBitmap yellow, green, blue, block, block2,floor,floor_D;
+		CMovingBitmap yellow, green, blue, block, block2,floor,floor_D,block6,circle;
 		int map[40][125];
 		const int MW, MH;
 		int X, Y;

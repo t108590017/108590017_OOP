@@ -170,6 +170,12 @@ IDB_block6              BITMAP                  "C:\\Users\\owner\\Documents\\Gi
 
 IDB_Circle              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\blockBall.bmp"
 
+IDB_brickB              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_B.bmp"
+
+IDB_brickG              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_G.bmp"
+
+IDB_brickR              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_R.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -333,6 +333,9 @@
     <Image Include="Bitmaps\blockBlue.bmp" />
     <Image Include="Bitmaps\blockGreen.bmp" />
     <Image Include="Bitmaps\blockYellow.bmp" />
+    <Image Include="Bitmaps\brick_B.bmp" />
+    <Image Include="Bitmaps\brick_G.bmp" />
+    <Image Include="Bitmaps\brick_R.bmp" />
     <Image Include="Bitmaps\cartman_fire.bmp" />
     <Image Include="Bitmaps\cartman_fire_L.bmp" />
     <Image Include="Bitmaps\cartman_rifle.bmp" />

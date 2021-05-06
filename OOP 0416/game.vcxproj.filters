@@ -297,5 +297,11 @@
     <Image Include="Bitmaps\brick_R.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Bitmaps\brick_BW.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\brick_BWG.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -176,6 +176,10 @@ IDB_brickG              BITMAP                  "C:\\Users\\owner\\Documents\\Gi
 
 IDB_brickR              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_R.bmp"
 
+IDB_brick_BW            BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_BW.bmp"
+
+IDB_brick_BWG           BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_BWG.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

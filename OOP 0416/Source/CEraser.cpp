@@ -38,8 +38,8 @@ namespace game_framework {
 
 	void CEraser::Initialize()
 	{
-		const int X_POS = 0;
-		const int Y_POS = 1356;
+		const int X_POS = 288;
+		const int Y_POS = 1676;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
@@ -70,7 +70,7 @@ namespace game_framework {
 			y +=  20;
 		if (isJumping) {
 			int a = 0;
-			if (m->IsEmpty(x, y - STEP_SIZE ) == 1|| m->IsEmpty(x, y - STEP_SIZE) == 5) {
+			if (m->IsEmpty(x, y - STEP_SIZE ) == 1|| m->IsEmpty(x, y - STEP_SIZE) == 5 || m->IsEmpty(x, y - STEP_SIZE) == 4) {
 				a -= STEP_SIZE;
 				y -= 40;
 			}

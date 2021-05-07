@@ -242,7 +242,7 @@ namespace game_framework {
 		//
 		//if (background.Top() > SIZE_Y)
 		//	background.SetTopLeft(60, -background.Height());
-		//background.SetTopLeft(background.Left(), background.Top() + 1);
+		//	background.SetTopLeft(background.Left(), background.Top() + 1);
 		//
 		// 移動球
 		//
@@ -297,8 +297,8 @@ namespace game_framework {
 		}
 		if (eraser.hitGoal1(&gameMap)==TRUE) {
 			//CAudio::Instance()->Play(AUDIO_END);			// 撥放 WAVE
-			eraser.SetXY(288, 1676);
-			gameMap.SetMapXY(288, 1676);
+			eraser.SetXY(288, 0);
+			gameMap.SetMapXY(64, 1676);
 			gameMap.setLevel();
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
@@ -330,7 +330,6 @@ namespace game_framework {
 		for (i = 0; i < NUMBALLS; i++)
 			ball[i].LoadBitmap();								// 載入第i個球的圖形*/
 		eraser.LoadBitmap();
-		eraser.SetXY(0, 1356);
 
 		energyBar.AddBitmap(IDB_energy1);
 		gameMap.LoadBitmap();
@@ -476,8 +475,8 @@ namespace game_framework {
 
 	void CGameStateRun::OnShow()
 	{
+		background.ShowBitmap();
 		gameMap.OnShow();
-
 		//
 		//  注意：Show裡面千萬不要移動任何物件的座標，移動座標的工作應由Move做才對，
 		//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語
@@ -488,10 +487,10 @@ namespace game_framework {
 		//
 		//help.ShowBitmap();					// 貼上說明圖
 		//hits_left.ShowBitmap();
-		ball[0].OnShow();				// 貼上第i號球*/
-		ball[1].OnShow();
-		ball[2].OnShow();
-		ball[3].OnShow();
+		//ball[0].OnShow();				// 貼上第i號球*/
+		//ball[1].OnShow();
+		//ball[2].OnShow();
+		//ball[3].OnShow();
 
 		//bball.OnShow();						// 貼上彈跳的球
 		eraser.OnShow(&gameMap);					// 貼上擦子

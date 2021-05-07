@@ -166,19 +166,19 @@ IDB_FLOOR               BITMAP                  "..\\Bitmaps\\floor.bmp"
 
 IDB_FLOOR_D             BITMAP                  "..\\Bitmaps\\floor_D.bmp"
 
-IDB_block6              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\6block.bmp"
+IDB_block6              BITMAP                  "..\\Bitmaps\\6block.bmp"
+												 
+IDB_Circle              BITMAP                  "..\\Bitmaps\\blockBall.bmp"
+												 
+IDB_brickB              BITMAP                  "..\\Bitmaps\\brick_B.bmp"
+												 
+IDB_brickG              BITMAP                  "..\\Bitmaps\\brick_G.bmp"
+												 
+IDB_brickR              BITMAP                  "..\\Bitmaps\\brick_R.bmp"
 
-IDB_Circle              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\blockBall.bmp"
+IDB_brick_BW            BITMAP                  "..\\Bitmaps\\brick_BW.bmp"
 
-IDB_brickB              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_B.bmp"
-
-IDB_brickG              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_G.bmp"
-
-IDB_brickR              BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_R.bmp"
-
-IDB_brick_BW            BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_BW.bmp"
-
-IDB_brick_BWG           BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\brick_BWG.bmp"
+IDB_brick_BWG           BITMAP                  "..\\Bitmaps\\brick_BWG.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

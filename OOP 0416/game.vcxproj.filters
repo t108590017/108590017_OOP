@@ -303,5 +303,8 @@
     <Image Include="Bitmaps\brick_BWG.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Bitmaps\sting.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

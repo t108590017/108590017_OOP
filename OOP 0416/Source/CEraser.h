@@ -29,6 +29,9 @@ namespace game_framework {
 		void SetWeaponS(bool flag);		// 設定是否換噴火
 		void SetWeaponD(bool flag);	// 設定是否換火箭
 		void SetWeaponF (bool flag);	// 設定是否換槍
+		void SetAlive(bool alive);	// 設定是否死
+		bool isAlive();				// 判斷是否死
+
 		bool isAttacking();
 		bool GetDirection();
 		bool isJump(bool jump);
@@ -56,6 +59,7 @@ namespace game_framework {
 		bool isRocket;				// 是否是火箭
 		bool isVchip;				// 是否是電
 		bool isGoal;				// 是否是到目標
+		bool is_Alive;				// 是否是到目標
 
 
 

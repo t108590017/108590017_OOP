@@ -39,7 +39,7 @@ namespace game_framework {
 	void CEraser::Initialize()
 	{
 		const int X_POS = 64;
-		const int Y_POS = 1676;
+		const int Y_POS = 1920;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
@@ -66,13 +66,18 @@ namespace game_framework {
 			if ((m->IsEmpty(x + STEP_SIZE+50, y))==1 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 4 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 5)
 				x += STEP_SIZE;
 		}
-		if (((m->IsEmpty(x, y+ STEP_SIZE+54))==1)|| ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 5))
-			y +=  20;
+		if (((m->IsEmpty(x, y + STEP_SIZE + 54)) == 1) || ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 5)) {
+			y += 32;
+			if (((m->IsEmpty(x, y + STEP_SIZE + 54)) == 13)) {
+				is_Alive = false;
+			}
+		}
+		
 		if (isJumping) {
 			int a = 0;
 			if (m->IsEmpty(x, y - STEP_SIZE ) == 1|| m->IsEmpty(x, y - STEP_SIZE) == 5 || m->IsEmpty(x, y - STEP_SIZE) == 4) {
 				a -= STEP_SIZE;
-				y -= 40;
+				y -= 64;
 			}
 			if (a == -30)
 				isJumping = false;
@@ -192,7 +197,12 @@ namespace game_framework {
 		isJumping = jump;
 		return jump;
 	}
-
+	void CEraser::SetAlive(bool alive) {
+		is_Alive = alive;
+	}
+	bool CEraser::isAlive() {
+		return is_Alive ;
+	}
 	void CEraser::OnShow(GameMap *m){
 
 		if (isStick) {

@@ -19,7 +19,7 @@ namespace game_framework {
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		//~GameMap();
 	protected:
-		CMovingBitmap yellow, green, blue, block, block2,floor,floor_D,block6,circle,brickR,brickG,brickB,brick_BW,brick_BWG;
+		CMovingBitmap yellow, green, blue, block, block2,floor,floor_D,block6,circle,brickR,brickG,brickB,brick_BW,brick_BWG,Sting;
 		int map[45][125];
 		const int MW, MH;
 		int X, Y;

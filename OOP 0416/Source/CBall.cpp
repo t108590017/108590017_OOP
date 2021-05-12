@@ -48,7 +48,7 @@ namespace game_framework {
 		bmp.AddBitmap(IDB_enemy1, RGB(181, 230, 29));			// 載入球的圖形
 		
 
-		bmp_center.LoadBitmap(IDB_CENTER, RGB(0, 0, 0));	// 載入球圓心的圖形
+		//bmp_center.LoadBitmap(IDB_CENTER, RGB(0, 0, 0));	// 載入球圓心的圖形
 
 	}
 
@@ -102,13 +102,13 @@ namespace game_framework {
 		x = nx; y = ny;
 	}
 
-	void CBall::OnShow()
+	void CBall::OnShow(GameMap* m)
 	{
 		if (is_alive) {
-			bmp.SetTopLeft(x + dx, y + dy);
+			bmp.SetTopLeft(m->ScreenX(x + dx), m->ScreenY(y + dy));
 			bmp.OnShow();
-			bmp_center.SetTopLeft(x, y);
-			bmp_center.ShowBitmap();
+			//bmp_center.SetTopLeft(x, y);
+			//bmp_center.ShowBitmap();
 		}
 	}
 }

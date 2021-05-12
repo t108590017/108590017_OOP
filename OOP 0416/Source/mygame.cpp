@@ -206,29 +206,71 @@ namespace game_framework {
 		const int HITS_LEFT_Y = 0;
 		const int BACKGROUND_X = 0;
 		const int ANIMATION_SPEED = 15;
-		//for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
-		//int y_pos = i / BALL_PER_ROW;
-		ball[0].SetXY(500, 280);
-		ball[0].SetDelay(0);
-		ball[0].SetIsAlive(true);
-		ball[1].SetXY(100, 230);
-		ball[1].SetDelay(0);
-		ball[1].SetIsAlive(true);
-		ball[2].SetXY(200, 150);
-		ball[2].SetDelay(0);
-		ball[2].SetIsAlive(true);
-		ball[3].SetXY(300, 200);
-		ball[3].SetDelay(0);
-		ball[3].SetIsAlive(true);
-		//}
 		eraser.Initialize();
+		eraser.SetAlive(TRUE);
 		background.SetTopLeft(0, 0);				// 設定背景的起始座標
-		help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
-		hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
-		hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
+		//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
+		//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
+		//hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
 		CAudio::Instance()->Stop(AUDIO_MENU);			// 撥放 WAVE
 
 		CAudio::Instance()->Play(AUDIO_INTRO, false);		// 撥放 WAVE
+		CAudio::Instance()->Stop(AUDIO_MENU);			// 撥放 WAVE
+
+		//for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
+		//int y_pos = i / BALL_PER_ROW;
+		if(gameMap.getLevel()== 1){
+		ball[0].SetXY(1024,1921);
+		ball[0].SetDelay(0);
+		ball[0].SetIsAlive(true);
+		ball[1].SetXY(1664, 1729);
+		ball[1].SetDelay(0);
+		ball[1].SetIsAlive(true);
+		ball[2].SetXY(1664+20*64, 1729+3*64);
+		ball[2].SetDelay(0);
+		ball[2].SetIsAlive(true);
+		ball[3].SetXY(1664 + 30 * 64, 1729 + 3 * 64);
+		ball[3].SetDelay(0);
+		ball[3].SetIsAlive(true);
+		ball[4].SetXY(1664 + 39 * 64, 1729);
+		ball[4].SetDelay(0);
+		ball[4].SetIsAlive(true);
+		ball[5].SetXY(1664 + 45 * 64, 1729+ 4 * 64);
+		ball[5].SetDelay(0);
+		ball[5].SetIsAlive(true);
+		ball[6].SetXY(1664 + 56 * 64, 1729-64);
+		ball[6].SetDelay(0);
+		ball[6].SetIsAlive(true);
+		ball[7].SetXY(1664 + 64 * 64, 1729 + 5 * 64);
+		ball[7].SetDelay(0);
+		ball[7].SetIsAlive(true);
+		}
+		if (gameMap.getLevel() == 2) {
+			ball[0].SetXY(1024, 1921);
+			ball[0].SetDelay(0);
+			ball[0].SetIsAlive(true);
+			ball[1].SetXY(1664, 1729);
+			ball[1].SetDelay(0);
+			ball[1].SetIsAlive(true);
+			ball[2].SetXY(1664 + 20 * 64, 1729 + 3 * 64);
+			ball[2].SetDelay(0);
+			ball[2].SetIsAlive(true);
+			ball[3].SetXY(1664 + 30 * 64, 1729 + 3 * 64);
+			ball[3].SetDelay(0);
+			ball[3].SetIsAlive(true);
+			ball[4].SetXY(1664 + 39 * 64, 1729);
+			ball[4].SetDelay(0);
+			ball[4].SetIsAlive(true);
+			ball[5].SetXY(1664 + 45 * 64, 1729 + 4 * 64);
+			ball[5].SetDelay(0);
+			ball[5].SetIsAlive(true);
+			ball[6].SetXY(1664 + 56 * 64, 1729 - 64);
+			ball[6].SetDelay(0);
+			ball[6].SetIsAlive(true);
+			ball[7].SetXY(1664 + 64 * 64, 1729 + 5 * 64);
+			ball[7].SetDelay(0);
+			ball[7].SetIsAlive(true);
+		}
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -295,6 +337,42 @@ namespace game_framework {
 			hits_left.Add(-1);
 
 		}
+		if (ball[4].IsAlive() && ball[4].HitEraser(&eraser) && eraser.isAttacking()) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[4].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+		}
+		if (ball[5].IsAlive() && ball[5].HitEraser(&eraser) && eraser.isAttacking()) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[5].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+		}
+		if (ball[6].IsAlive() && ball[6].HitEraser(&eraser) && eraser.isAttacking()) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[6].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+		}
+		if (ball[7].IsAlive() && ball[7].HitEraser(&eraser) && eraser.isAttacking()) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[7].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+		}
 		if (eraser.hitGoal1(&gameMap)==TRUE) {
 			//CAudio::Instance()->Play(AUDIO_END);			// 撥放 WAVE
 			eraser.SetXY(288, 0);
@@ -302,6 +380,11 @@ namespace game_framework {
 			gameMap.setLevel();
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
+		}
+		if (eraser.isAlive() ==FALSE) {
+			eraser.SetXY(288, 0);
+			gameMap.SetMapXY(64, 1676);
+			GotoGameState(GAME_STATE_DEAD);
 		}
 		gameMap.OnMove();
 
@@ -487,11 +570,9 @@ namespace game_framework {
 		//
 		//help.ShowBitmap();					// 貼上說明圖
 		//hits_left.ShowBitmap();
-		//ball[0].OnShow();				// 貼上第i號球*/
-		//ball[1].OnShow();
-		//ball[2].OnShow();
-		//ball[3].OnShow();
-
+		for (int num = 0; num <= 7; num++) {
+			ball[num].OnShow(&gameMap);				// 貼上第i號球*/
+		}
 		//bball.OnShow();						// 貼上彈跳的球
 		eraser.OnShow(&gameMap);					// 貼上擦子
 		energyBar.SetTopLeft(500, 0);
@@ -554,6 +635,67 @@ namespace game_framework {
 		pDC->SetTextColor(RGB(255, 255, 0));
 		char str[80];								// Demo 數字對字串的轉換
 		sprintf(str, "Level %d",gameMap.getLevel());
+		pDC->TextOut(240, 210, str);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+
+	}
+
+
+	/////////////////////////////////////////////////////////////////////////////
+	// 這個class為遊戲的結束狀態(Game Over)
+	/////////////////////////////////////////////////////////////////////////////
+
+	CGameStateDead::CGameStateDead(CGame* g)
+		: CGameState(g)
+	{
+	}
+
+	void CGameStateDead::OnMove()
+	{
+		counter--;
+		if (counter < 0) {
+			CAudio::Instance()->Stop(AUDIO_END);			// 撥放 WAVE
+			CAudio::Instance()->Play(AUDIO_MENU, true);			// 撥放 WAVE
+
+			GotoGameState(GAME_STATE_INIT);
+		}
+	}
+
+	void CGameStateDead::OnBeginState()
+	{
+		counter = 30 * 2; // 5 seconds
+	}
+
+	void CGameStateDead::OnInit()
+	{
+		//
+		// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
+		//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
+		//
+		ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
+		//
+		// 開始載入資料
+		//
+
+		//
+		// 最終進度為100%
+		//
+
+		ShowInitProgress(100);
+
+	}
+
+	void CGameStateDead::OnShow()
+	{
+		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC
+		CFont f, * fp;
+		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(255, 255, 0));
+		char str[80];								// Demo 數字對字串的轉換
+		sprintf(str, "Game Over ! (%d)", counter / 30);
 		pDC->TextOut(240, 210, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC

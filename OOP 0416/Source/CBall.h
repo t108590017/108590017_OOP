@@ -12,7 +12,7 @@ namespace game_framework {
 		bool IsAlive();											// 是否活著
 		void LoadBitmap();										// 載入圖形
 		void OnMove();											// 移動
-		void OnShow();											// 將圖形貼到畫面
+		void OnShow(GameMap *m);											// 將圖形貼到畫面
 		void SetXY(int nx, int ny);								// 設定圓心的座標
 		void SetIsAlive(bool alive);							// 設定是否活著
 		void SetDelay(double d);									// 設定旋轉的速度

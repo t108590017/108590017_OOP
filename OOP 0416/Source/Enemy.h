@@ -1,37 +1,33 @@
+#ifndef ENEMY_H
+#define ENEMY_H
+#include "CEraser.h"
 namespace game_framework {
 	class GameMap;
+	class Player;
 	class CEraser;
-	class Enemy {
+	class Enemy :public CEraser {
 
 	public:
 		Enemy();
-		Enemy(int InputX, int InputY);
-		void LoadBitmap();
-		void OnShow(GameMap* m);
-		void OnMove(GameMap* m, CEraser* role);
-		void Initialize(int InputX, int InputY);
-		void SetDirection(bool flag);
-		bool collision(int mX, int mY);											// 檢測兩個物體是否碰撞
-		bool IsHit(int mX, int mY, bool Direction, bool isSpecialAction);		// 檢測主角是否打到腳色
-		static int SetOffset(int x, int offset);								// 設定角色播動畫的偏移植
-		int GetBlood();															// 回傳角色血量
-		void ShowProgress(int percent, int X);									// 播放血條進度
+		virtual void LoadBitmap();
+		virtual void OnShow(GameMap* m);
+		virtual void OnMove(GameMap* m, Player* role);
+		virtual  void Initialize();
+		bool HitEraser(CEraser* eraser);						// 是否碰到擦子
+		void SetIsAlive(bool alive);							// 設定是否活著
+		bool IsAlive();											// 是否活著
 
 	protected:
-		CAnimation AnimationCurrent;// 當前動畫
 
-		bool DirectionX;			// 右為true左為false
-		bool DirectionY;			// 上為true下為false
-		bool isMoving;				// 正在移動
-		bool isCollision;			// 是否跟腳色接觸
-		bool isHit;					// 主角是否正在出拳
-		bool BarIsShow;				// 血條正在顯示
-		bool AnimationReset_State;					// 用於重設AnimationCurrent播放圖片順序
-		int  x, y;					// 角色在地圖上的x,y 座標
-		int OffsetX, OffsetY;
-		int Blood;					// 腳色血量
-		int BloodX;					// 血條位置
-		int BloodTime;				// 用來計時血條持續時間
-		int Time;					// 計時器
+		CAnimation bmp;
+		int x, y;					// 圓心的座標
+		int dx, dy;					// 球距離圓心的位移量
+		int index;					// 球的「角度」，0-17表示0-360度
+		double delay_counter;			// 調整旋轉速度的計數器
+		double delay;					// 旋轉的速度
+		bool is_alive;				// 是否活著
+	private:
+		bool HitRectangle(int tx1, int ty1, int tx2, int ty2);	// 是否碰到參數範圍的矩形
 	};
 }
+#endif

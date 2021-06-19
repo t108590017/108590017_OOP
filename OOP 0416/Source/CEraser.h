@@ -14,7 +14,7 @@ namespace game_framework {
 		int  GetY1();					// 擦子左上角 y 座標
 		int  GetX2();					// 擦子右下角 x 座標
 		int  GetY2();					// 擦子右下角 y 座標
-		void Initialize();				// 設定擦子為初始值
+		void Initialize(GameMap* m);				// 設定擦子為初始值
 		void LoadBitmap();				// 載入圖形
 		void OnMove(GameMap* m);					// 移動擦子
 		void OnShow(GameMap* m);					// 將擦子圖形貼到畫面
@@ -31,14 +31,18 @@ namespace game_framework {
 		void SetWeaponF (bool flag);	// 設定是否換槍
 		void SetAlive(bool alive);	// 設定是否死
 		bool isAlive();				// 判斷是否死
-
+		int  getLife();
+		void restart();
+		void lifeLeft(int add);
 		bool isAttacking();
 		bool GetDirection();
 		bool isJump(bool jump);
 		bool hitGoal1(GameMap* m);
 		void SetXY(int nx, int ny);		// 設定擦子左上角座標
+		bool reLevel(GameMap* m);
 
 	protected:
+		GameMap		gameMap;	//地圖
 		CAnimation animation;		// 擦子的動畫
 		CAnimation gotRight;		// 往右的動畫
 		CAnimation gotLeft;		    // 往左的動畫

@@ -261,6 +261,7 @@
     <ClCompile Include="Source\CBall.cpp" />
     <ClCompile Include="Source\CBouncingBall.cpp" />
     <ClCompile Include="Source\CEraser.cpp" />
+    <ClCompile Include="Source\Coin.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -308,6 +309,7 @@
     <ClInclude Include="Source\CBall.h" />
     <ClInclude Include="Source\CBouncingBall.h" />
     <ClInclude Include="Source\CEraser.h" />
+    <ClInclude Include="Source\Coin.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\gameView.h" />
@@ -328,11 +330,22 @@
   <ItemGroup>
     <Image Include="Bitmaps\6block.bmp" />
     <Image Include="Bitmaps\background.bmp" />
+    <Image Include="bitmaps\bitmap8.bmp" />
     <Image Include="Bitmaps\block1.bmp" />
     <Image Include="Bitmaps\blockBall.bmp" />
     <Image Include="Bitmaps\blockBlue.bmp" />
     <Image Include="Bitmaps\blockGreen.bmp" />
     <Image Include="Bitmaps\blockYellow.bmp" />
+    <Image Include="bitmaps\bmp10.bmp" />
+    <Image Include="bitmaps\bmp11.bmp" />
+    <Image Include="bitmaps\bmp12.bmp" />
+    <Image Include="bitmaps\bmp13.bmp" />
+    <Image Include="bitmaps\bmp14.bmp" />
+    <Image Include="bitmaps\bmp15.bmp" />
+    <Image Include="bitmaps\bmp16.bmp" />
+    <Image Include="bitmaps\bmp17.bmp" />
+    <Image Include="bitmaps\bmp18.bmp" />
+    <Image Include="bitmaps\bmp19.bmp" />
     <Image Include="Bitmaps\brick_B.bmp" />
     <Image Include="Bitmaps\brick_BW.bmp" />
     <Image Include="Bitmaps\brick_BWG.bmp" />
@@ -350,6 +363,8 @@
     <Image Include="Bitmaps\cartman_stick2_L.bmp" />
     <Image Include="Bitmaps\cartman_Vchip.bmp" />
     <Image Include="Bitmaps\choose.bmp" />
+    <Image Include="Bitmaps\coin.bmp" />
+    <Image Include="bitmaps\coin1.bmp" />
     <Image Include="Bitmaps\enemy.bmp" />
     <Image Include="Bitmaps\enemy_L.bmp" />
     <Image Include="Bitmaps\enemy_walk.bmp" />
@@ -358,6 +373,7 @@
     <Image Include="Bitmaps\floor.bmp" />
     <Image Include="Bitmaps\floor_D.bmp" />
     <Image Include="Bitmaps\menu.bmp" />
+    <Image Include="bitmaps\minus1.bmp" />
     <Image Include="Bitmaps\sting.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bitmap5.bmp" />

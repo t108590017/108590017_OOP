@@ -1,6 +1,8 @@
 #include "CEraser.h"
 #include "CBall.h"
 #include "CBouncingBall.h"
+#include "Coin.h"
+
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -14,6 +16,7 @@ namespace game_framework {
 		AUDIO_MENU,				// 3 Menu音樂
 		AUDIO_INTRO,
 		AUDIO_END,
+		AUDIO_EAT,
 		AUDIO_HIT
 
 	};
@@ -40,6 +43,8 @@ namespace game_framework {
 		CMovingBitmap menu;								// csie的logo
 		CMovingBitmap Choose;							// csie的logo
 		CAnimation		finish;
+		GameMap		gameMap;
+		CEraser eraser;
 
 
 
@@ -72,12 +77,14 @@ namespace game_framework {
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		CBall* ball;		// 球的陣列
+		CCoin* coin;
 		CMovingBitmap	corner;		// 角落圖
 		CBall	enemy1;		// 敵人圖
-		CAnimation		energyBar;
+		CAnimation		energyBar,Lives_P,coin_P;
 
 		CEraser			eraser;		// 拍子
-		CInteger		hits_left;	// 剩下的撞擊數
+		CInteger		hits_left,Lives;	// 剩下的撞擊數
+
 		CBouncingBall   bball;		// 反覆彈跳的球
 		int enemyHealth1 = 0;
 		int enemyHealth2 = 0;
@@ -141,6 +148,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		int counter;	// 倒數之計數器
+		CEraser			eraser;		// 拍子
 		GameMap		gameMap;
 		CAnimation		finish;
 

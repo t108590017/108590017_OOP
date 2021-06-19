@@ -37,6 +37,7 @@ namespace game_framework {
 		y = y_pos;
 		CAudio::Instance()->Play(AUDIO_MENU, true);			// 撥放 WAVE
 
+
 		Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -70,8 +71,12 @@ namespace game_framework {
 				y = 420;
 			}
 		}
-		if (nChar == KEY_ENTER && y == 312)
-			GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
+		if (nChar == KEY_ENTER && y == 312){
+			eraser.restart();
+			gameMap.SetMapXY(-64, 1676);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
 		else if (nChar == KEY_ENTER && y == 420)
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 		else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
@@ -167,7 +172,7 @@ namespace game_framework {
 	void CGameStateOver::OnShow()
 	{
 		finish.OnShow();
-		/*CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		/*CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC
 		CFont f, * fp;
 		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
 		fp = pDC->SelectObject(&f);					// 選用 font f
@@ -189,11 +194,15 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		ball = new CBall[NUMBALLS];
+		coin = new CCoin[NUMBALLS];
+
 	}
 
 	CGameStateRun::~CGameStateRun()
 	{
 		delete[] ball;
+		delete[] coin;
+
 	}
 
 	void CGameStateRun::OnBeginState()
@@ -202,16 +211,19 @@ namespace game_framework {
 		const int BALL_XY_OFFSET = 45;
 		const int BALL_PER_ROW = 7;
 		const int HITS_LEFT = 10;
-		const int HITS_LEFT_X = 590;
-		const int HITS_LEFT_Y = 0;
+		const int Lives_LEFT_X = 590;
+		const int Lives_LEFT_Y = 450;
+		const int Coin_X = 600;
+		const int Coin_Y = 32;
 		const int BACKGROUND_X = 0;
 		const int ANIMATION_SPEED = 15;
-		eraser.Initialize();
+		eraser.Initialize(&gameMap);
 		eraser.SetAlive(TRUE);
 		background.SetTopLeft(0, 0);				// 設定背景的起始座標
 		//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
-		//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
-		//hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
+		Lives.SetInteger(eraser.getLife());					// 指定剩下的撞擊數
+		Lives.SetTopLeft(Lives_LEFT_X, Lives_LEFT_Y);		// 指定剩下撞擊數的座標
+
 		CAudio::Instance()->Stop(AUDIO_MENU);			// 撥放 WAVE
 
 		CAudio::Instance()->Play(AUDIO_INTRO, false);		// 撥放 WAVE
@@ -219,33 +231,59 @@ namespace game_framework {
 
 		//for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
 		//int y_pos = i / BALL_PER_ROW;
-		if(gameMap.getLevel()== 1){
-		ball[0].SetXY(1024,1921);
-		ball[0].SetDelay(0);
-		ball[0].SetIsAlive(true);
-		ball[1].SetXY(1664, 1729);
-		ball[1].SetDelay(0);
-		ball[1].SetIsAlive(true);
-		ball[2].SetXY(1664+20*64, 1729+3*64);
-		ball[2].SetDelay(0);
-		ball[2].SetIsAlive(true);
-		ball[3].SetXY(1664 + 30 * 64, 1729 + 3 * 64);
-		ball[3].SetDelay(0);
-		ball[3].SetIsAlive(true);
-		ball[4].SetXY(1664 + 39 * 64, 1729);
-		ball[4].SetDelay(0);
-		ball[4].SetIsAlive(true);
-		ball[5].SetXY(1664 + 45 * 64, 1729+ 4 * 64);
-		ball[5].SetDelay(0);
-		ball[5].SetIsAlive(true);
-		ball[6].SetXY(1664 + 56 * 64, 1729-64);
-		ball[6].SetDelay(0);
-		ball[6].SetIsAlive(true);
-		ball[7].SetXY(1664 + 64 * 64, 1729 + 5 * 64);
-		ball[7].SetDelay(0);
-		ball[7].SetIsAlive(true);
-		}
-		if (gameMap.getLevel() == 2) {
+		if (gameMap.getLevel() == 1) {
+			coin[0].SetXY(1024 + 6 * 64, 1921);
+			coin[0].SetDelay(0);
+			coin[0].SetIsAlive(true);
+
+			coin[1].SetXY(1024 + 49 * 64, 1921 + 64);
+			coin[1].SetDelay(0);
+			coin[1].SetIsAlive(true);
+
+			coin[2].SetXY(1024 + 50 * 64, 1921 + 64);
+			coin[2].SetDelay(0);
+			coin[2].SetIsAlive(true);
+
+			coin[3].SetXY(1024 + 69 * 64, 1921);
+			coin[3].SetDelay(0);
+			coin[3].SetIsAlive(true);
+
+			coin[4].SetXY(1024 + 68 * 64, 1921);
+			coin[4].SetDelay(0);
+			coin[4].SetIsAlive(true);
+
+			coin[5].SetXY(1024 + 69 * 64, 1921 - 7 * 64);
+			coin[5].SetDelay(0);
+			coin[5].SetIsAlive(true);
+
+			coin[6].SetXY(1024 + 64 * 64, 1921 - 10 * 64);
+			coin[6].SetDelay(0);
+			coin[6].SetIsAlive(true);
+
+			coin[7].SetXY(1024 + 64 * 64, 1921 - 12 * 64);
+			coin[7].SetDelay(0);
+			coin[7].SetIsAlive(true);
+
+			coin[8].SetXY(1024 + 69 * 64, 1921 - 12 * 64);
+			coin[8].SetDelay(0);
+			coin[8].SetIsAlive(true);
+
+			coin[9].SetXY(1024 + 68 * 64, 1921 - 12 * 64);
+			coin[9].SetDelay(0);
+			coin[9].SetIsAlive(true);
+
+			coin[10].SetXY(1024 + 67 * 64, 1921);
+			coin[10].SetDelay(0);
+			coin[10].SetIsAlive(true);
+
+			coin[11].SetXY(1024 + 87 * 64, 1921 - 64);
+			coin[11].SetDelay(0);
+			coin[11].SetIsAlive(true);
+
+			coin[12].SetXY(1024 + 86 * 64, 1921 - 64);
+			coin[12].SetDelay(0);
+			coin[12].SetIsAlive(true);
+
 			ball[0].SetXY(1024, 1921);
 			ball[0].SetDelay(0);
 			ball[0].SetIsAlive(true);
@@ -271,7 +309,319 @@ namespace game_framework {
 			ball[7].SetDelay(0);
 			ball[7].SetIsAlive(true);
 		}
+		else if (gameMap.getLevel() == 2) {
+
+			coin[0].SetXY(14 * 64, 1921 + 6 * 64);
+			coin[0].SetDelay(0);
+			coin[0].SetIsAlive(true);
+
+			coin[1].SetXY(15 * 64, 1921 + 6 * 64);
+			coin[1].SetDelay(0);
+			coin[1].SetIsAlive(true);
+
+			coin[2].SetXY(16 * 64, 1921 + 6 * 64);
+			coin[2].SetDelay(0);
+			coin[2].SetIsAlive(true);
+
+			coin[3].SetXY(17 * 64, 1921 + 6 * 64);
+			coin[3].SetDelay(0);
+			coin[3].SetIsAlive(true);
+
+			coin[4].SetXY(1024 + 39 * 64, 1921 + 64);
+			coin[4].SetDelay(0);
+			coin[4].SetIsAlive(true);
+
+			coin[5].SetXY(1024 + 41 * 64, 1921 + 64);
+			coin[5].SetDelay(0);
+			coin[5].SetIsAlive(true);
+
+			coin[6].SetXY(1024 + 40 * 64, 1921 + 64);
+			coin[6].SetDelay(0);
+			coin[6].SetIsAlive(true);
+
+
+
+			coin[7].SetXY(1664 + 53 * 64, 1921 + 3 * 64);
+			coin[7].SetDelay(0);
+			coin[7].SetIsAlive(true);
+
+			coin[8].SetXY(1664 + 52 * 64, 1921 + 3 * 64);
+			coin[8].SetDelay(0);
+			coin[8].SetIsAlive(true);
+
+
+			coin[9].SetXY(1024 + 69 * 64, 1729 + 11 * 64);
+			coin[9].SetDelay(0);
+			coin[9].SetIsAlive(true);
+
+			coin[10].SetXY(1024 + 70 * 64, 1729 + 11 * 64);
+			coin[10].SetDelay(0);
+			coin[10].SetIsAlive(true);
+
+
+			coin[11].SetXY(1664 + 69 * 64, 1729 + 9 * 64);
+			coin[11].SetDelay(0);
+			coin[11].SetIsAlive(true);
+
+			coin[12].SetXY(1664 + 70 * 64, 1729 + 9 * 64);
+			coin[12].SetDelay(0);
+			coin[12].SetIsAlive(true);
+
+			coin[13].SetXY(1664 + 71 * 64, 1729 + 9 * 64);
+			coin[13].SetDelay(0);
+			coin[13].SetIsAlive(true);
+
+
+			ball[0].SetXY(1024 + 5 * 64, 1921 + 8 * 64);
+			ball[0].SetDelay(0);
+			ball[0].SetIsAlive(true);
+			ball[1].SetXY(1024 + 14 * 64, 1921 + 8 * 64);
+			ball[1].SetDelay(0);
+			ball[1].SetIsAlive(true);
+			ball[2].SetXY(1024 + 28 * 64, 1921 + 7 * 64);
+			ball[2].SetDelay(0);
+			ball[2].SetIsAlive(true);
+			ball[3].SetXY(1664 + 30 * 64, 1729 + 5 * 64);
+			ball[3].SetDelay(0);
+			ball[3].SetIsAlive(true);
+			ball[4].SetXY(1664 + 41 * 64, 1729 + 9 * 64);
+			ball[4].SetDelay(0);
+			ball[4].SetIsAlive(true);
+			ball[5].SetXY(1664 + 48 * 64, 1729 + 7 * 64);
+			ball[5].SetDelay(0);
+			ball[5].SetIsAlive(true);
+			ball[6].SetXY(1664 + 55 * 64, 1729 + 9 * 64);
+			ball[6].SetDelay(0);
+			ball[6].SetIsAlive(true);
+			ball[7].SetXY(1664 + 64 * 64, 1729 + 9 * 64);
+			ball[7].SetDelay(0);
+			ball[7].SetIsAlive(true);
+		}
+		else if (gameMap.getLevel() == 3) {
+			ball[0].SetXY(12 * 64, 1921);
+			ball[0].SetDelay(0);
+			ball[0].SetIsAlive(true);
+
+			coin[0].SetXY(15 * 64, 1921 - 4 * 64);
+			coin[0].SetDelay(0);
+			coin[0].SetIsAlive(true);
+
+			coin[1].SetXY(16 * 64, 1921 - 4 * 64);
+			coin[1].SetDelay(0);
+			coin[1].SetIsAlive(true);
+
+			coin[2].SetXY(17 * 64, 1921 - 4 * 64);
+			coin[2].SetDelay(0);
+			coin[2].SetIsAlive(true);
+
+			coin[3].SetXY(21 * 64, 1921 - 2 * 64);
+			coin[3].SetDelay(0);
+			coin[3].SetIsAlive(true);
+
+			coin[4].SetXY(22 * 64, 1921 - 2 * 64);
+			coin[4].SetDelay(0);
+			coin[4].SetIsAlive(true);
+
+			coin[5].SetXY(23 * 64, 1921 - 2 * 64);
+			coin[5].SetDelay(0);
+			coin[5].SetIsAlive(true);
+
+			ball[1].SetXY(23 * 64, 1921 - 4 * 64);
+			ball[1].SetDelay(0);
+			ball[1].SetIsAlive(true);
+
+			ball[2].SetXY(26 * 64, 1921 - 4 * 64);
+			ball[2].SetDelay(0);
+			ball[2].SetIsAlive(true);
+
+			ball[3].SetXY(29 * 64, 1921 - 4 * 64);
+			ball[3].SetDelay(0);
+			ball[3].SetIsAlive(true);
+
+			ball[4].SetXY(38 * 64, 1921 - 10 * 64);
+			ball[4].SetDelay(0);
+			ball[4].SetIsAlive(true);
+
+			ball[5].SetXY(27 * 64, 1921 - 10 * 64);
+			ball[5].SetDelay(0);
+			ball[5].SetIsAlive(true);
+
+			ball[6].SetXY(38 * 64, 1921 - 18 * 64);
+			ball[6].SetDelay(0);
+			ball[6].SetIsAlive(true);
+
+			coin[6].SetXY(42 * 64, 1921 - 22 * 64);
+			coin[6].SetDelay(0);
+			coin[6].SetIsAlive(true);
+
+			coin[7].SetXY(58 * 64, 1921 - 5 * 64);
+			coin[7].SetDelay(0);
+			coin[7].SetIsAlive(true);
+
+			coin[8].SetXY(58 * 64, 1921 - 7 * 64);
+			coin[8].SetDelay(0);
+			coin[8].SetIsAlive(true);
+
+			coin[9].SetXY(58 * 64, 1921 - 8 * 64);
+			coin[9].SetDelay(0);
+			coin[9].SetIsAlive(true);
+
+			coin[10].SetXY(58 * 64, 1921 - 3 * 64);
+			coin[10].SetDelay(0);
+			coin[10].SetIsAlive(true);
+
+			coin[11].SetXY(58 * 64, 1921 - 6 * 64);
+			coin[11].SetDelay(0);
+			coin[11].SetIsAlive(true);
+
+			coin[12].SetXY(58 * 64, 1921 - 4 * 64);
+			coin[12].SetDelay(0);
+			coin[12].SetIsAlive(true);
+
+			coin[13].SetXY(63 * 64, 1921 - 10 * 64);
+			coin[13].SetDelay(0);
+			coin[13].SetIsAlive(true);
+
+			coin[14].SetXY(63 * 64, 1921 - 11 * 64);
+			coin[14].SetDelay(0);
+			coin[14].SetIsAlive(true);
+
+			coin[15].SetXY(63 * 64, 1921 - 12 * 64);
+			coin[15].SetDelay(0);
+			coin[15].SetIsAlive(true);
+
+			coin[16].SetXY(63 * 64, 1921 - 9 * 64);
+			coin[16].SetDelay(0);
+			coin[16].SetIsAlive(true);
+
+			coin[17].SetXY(63 * 64, 1921 - 8 * 64);
+			coin[17].SetDelay(0);
+			coin[17].SetIsAlive(true);
+		}
+		else if (gameMap.getLevel() == 4) {
+			coin[0].SetXY(17 * 64, 1921 - 5 * 64);
+			coin[0].SetDelay(0);
+			coin[0].SetIsAlive(true);
+
+			coin[1].SetXY(18 * 64, 1921 - 5 * 64);
+			coin[1].SetDelay(0);
+			coin[1].SetIsAlive(true);
+
+			coin[2].SetXY(19 * 64, 1921 - 5 * 64);
+			coin[2].SetDelay(0);
+			coin[2].SetIsAlive(true);
+
+			ball[0].SetXY(18 * 64, 1921 - 1 * 64);
+			ball[0].SetDelay(0);
+			ball[0].SetIsAlive(true);
+			ball[1].SetXY(32 * 64, 1921 - 1 * 64);
+			ball[1].SetDelay(0);
+			ball[1].SetIsAlive(true);
+			ball[2].SetXY(37 * 64, 1921 - 1 * 64);
+			ball[2].SetDelay(0);
+			ball[2].SetIsAlive(true);
+			ball[3].SetXY(43 * 64, 1921 - 1 * 64);
+			ball[3].SetDelay(0);
+			ball[3].SetIsAlive(true);
+			ball[4].SetXY(0, 0);
+			ball[4].SetDelay(0);
+			ball[4].SetIsAlive(true);
+
+			coin[3].SetXY(63 * 64, 1921 - 4 * 64);
+			coin[3].SetDelay(0);
+			coin[3].SetIsAlive(true);
+			coin[4].SetXY(63 * 64, 1921 - 6 * 64);
+			coin[4].SetDelay(0);
+			coin[4].SetIsAlive(true);
+			coin[5].SetXY(63 * 64, 1921 - 5 * 64);
+			coin[5].SetDelay(0);
+			coin[5].SetIsAlive(true);
+
+			ball[5].SetXY(59 * 64, 1921);
+			ball[5].SetDelay(0);
+			ball[5].SetIsAlive(true);
+			ball[6].SetXY(52 * 64, 1921 - 12 * 64);
+			ball[6].SetDelay(0);
+			ball[6].SetIsAlive(true);
+			ball[7].SetXY(47 * 64, 1921 - 11 * 64);
+			ball[7].SetDelay(0);
+			ball[7].SetIsAlive(true);
+			ball[8].SetXY(38 * 64, 1921 - 11 * 64);
+			ball[8].SetDelay(0);
+			ball[8].SetIsAlive(true);
+
+			ball[9].SetXY(32 * 64, 1921 - 11 * 64);
+			ball[9].SetDelay(0);
+			ball[9].SetIsAlive(true);
+
+			coin[6].SetXY(64 + 10 * 64, 1921 - 19 * 64);
+			coin[6].SetDelay(0);
+			coin[6].SetIsAlive(true);
+			coin[7].SetXY(64 + 11 * 64, 1921 - 19 * 64);
+			coin[7].SetDelay(0);
+			coin[7].SetIsAlive(true);
+			coin[8].SetXY(64 + 12 * 64, 1921 - 19 * 64);
+			coin[8].SetDelay(0);
+			coin[8].SetIsAlive(true);
+			coin[9].SetXY(64, 1921 - 16 * 64);
+			coin[9].SetDelay(0);
+			coin[9].SetIsAlive(true);
+
+			ball[10].SetXY(12 * 64, 1921 - 13 * 64);
+			ball[10].SetDelay(0);
+			ball[10].SetIsAlive(true);
+
+			ball[11].SetXY(21 * 64, 1921 - 13 * 64);
+			ball[11].SetDelay(0);
+			ball[11].SetIsAlive(true);
+			ball[12].SetXY(21 * 64, 1921 - 19 * 64);
+			ball[12].SetDelay(0);
+			ball[12].SetIsAlive(true);
+
+			ball[9].SetXY(25 * 64, 1921 - 24 * 64);
+			ball[9].SetDelay(0);
+			ball[9].SetIsAlive(true);
+
+			ball[10].SetXY(35 * 64, 1921 - 24 * 64);
+			ball[10].SetDelay(0);
+			ball[10].SetIsAlive(true);
+
+			ball[11].SetXY(43 * 64, 1921 - 24 * 64);
+			ball[11].SetDelay(0);
+			ball[11].SetIsAlive(true);
+
+			coin[10].SetXY(50 * 64, 1921 - 23 * 64);
+			coin[10].SetDelay(0);
+			coin[10].SetIsAlive(true);
+			coin[11].SetXY(48 * 64, 1921 - 23 * 64);
+			coin[11].SetDelay(0);
+			coin[11].SetIsAlive(true);
+			coin[12].SetXY(49 * 64, 1921 - 23 * 64);
+			coin[12].SetDelay(0);
+			coin[12].SetIsAlive(true);
+
+			ball[12].SetXY(57 * 64, 1921 - 24 * 64);
+			ball[12].SetDelay(0);
+			ball[12].SetIsAlive(true);
+
+		}
+		else if (gameMap.getLevel() == 5) {
+			for (int num = 0; num < 15; num++) {
+				ball[num].SetXY(0,0);
+				ball[num].SetDelay(0);
+				ball[num].SetIsAlive(false);
+
+				coin[num].SetXY(0, 0);
+				coin[num].SetDelay(0);
+				coin[num].SetIsAlive(false);
+			}
+		}
+		else if (gameMap.getLevel() == 6) {
+		
+
+		}
 	}
+
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
 	{
@@ -289,6 +639,7 @@ namespace game_framework {
 		// 移動球
 		//
 		int i;
+
 		for (i = 0; i < NUMBALLS; i++)
 			ball[i].OnMove();
 		//
@@ -298,6 +649,87 @@ namespace game_framework {
 		//
 		// 判斷擦子是否碰到球
 		//
+		if (coin[0].IsAlive() && coin[0].HitEraser(&eraser)) {
+			coin[0].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+
+		if (coin[1].IsAlive() && coin[1].HitEraser(&eraser)) {
+			coin[1].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[2].IsAlive() && coin[2].HitEraser(&eraser)) {
+			coin[2].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[3].IsAlive() && coin[3].HitEraser(&eraser)) {
+			coin[3].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[4].IsAlive() && coin[4].HitEraser(&eraser)) {
+			coin[4].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[5].IsAlive() && coin[5].HitEraser(&eraser)) {
+			coin[5].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[6].IsAlive() && coin[6].HitEraser(&eraser)) {
+			coin[6].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[7].IsAlive() && coin[7].HitEraser(&eraser)) {
+			coin[7].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[8].IsAlive() && coin[8].HitEraser(&eraser)) {
+			coin[8].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[9].IsAlive() && coin[9].HitEraser(&eraser)) {
+			coin[9].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[10].IsAlive() && coin[10].HitEraser(&eraser)) {
+			coin[10].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[11].IsAlive() && coin[11].HitEraser(&eraser)) {
+			coin[11].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[12].IsAlive() && coin[12].HitEraser(&eraser)) {
+			coin[12].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[13].IsAlive() && coin[13].HitEraser(&eraser)) {
+			coin[13].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[14].IsAlive() && coin[14].HitEraser(&eraser)) {
+			coin[14].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[15].IsAlive() && coin[15].HitEraser(&eraser)) {
+			coin[15].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
 		if (ball[0].IsAlive() && ball[0].HitEraser(&eraser) && eraser.isAttacking()) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
@@ -373,18 +805,84 @@ namespace game_framework {
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
 		}
-		if (eraser.hitGoal1(&gameMap)==TRUE) {
+		if (ball[8].IsAlive() && ball[8].HitEraser(&eraser) && eraser.isAttacking()) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[8].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+		}
+		if (ball[9].IsAlive() && ball[9].HitEraser(&eraser) && eraser.isAttacking()) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[9].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+		}
+		if (ball[10].IsAlive() && ball[10].HitEraser(&eraser) && eraser.isAttacking()) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[10].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+		}
+		if (ball[11].IsAlive() && ball[11].HitEraser(&eraser) && eraser.isAttacking()) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[11].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+		}
+		if (eraser.hitGoal1(&gameMap) == TRUE) {
 			//CAudio::Instance()->Play(AUDIO_END);			// 撥放 WAVE
-			eraser.SetXY(288, 0);
-			gameMap.SetMapXY(64, 1676);
+			if (gameMap.getLevel() == 6) {
+			eraser.SetXY(288, -18*64);
+			gameMap.SetMapXY(-64, 1676-18*64);
+
+			}
+			else {
+				eraser.SetXY(288, 0);
+				gameMap.SetMapXY(-64, 1676);
+
+			}
 			gameMap.setLevel();
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
 		}
-		if (eraser.isAlive() ==FALSE) {
+		if (eraser.reLevel(&gameMap) == TRUE) {
 			eraser.SetXY(288, 0);
-			gameMap.SetMapXY(64, 1676);
+			gameMap.SetMapXY(-64, 1676);
+			gameMap.JumpLevel(1);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
+		if (eraser.isAlive() == FALSE) {
+			eraser.SetXY(288, 0);
+
+			if (gameMap.getLevel() == 6) {
+				eraser.SetXY(288, -18 * 64);
+				gameMap.SetMapXY(-64, 1676 - 18 * 64);
+
+			}
+			else {
+				eraser.SetXY(288, 0);
+				gameMap.SetMapXY(-64, 1676);
+
+			}
 			GotoGameState(GAME_STATE_DEAD);
+		}
+		if (coin[0].getLeft() >= 10) {
+			Lives.Add(1);
+			eraser.lifeLeft(1);
+			coin[0].setLeft(-coin[0].getLeft());
 		}
 		gameMap.OnMove();
 
@@ -412,10 +910,18 @@ namespace game_framework {
 		int i;
 		for (i = 0; i < NUMBALLS; i++)
 			ball[i].LoadBitmap();								// 載入第i個球的圖形*/
+		for (i = 0; i < NUMBALLS; i++)
+			coin[i].LoadBitmap();
+
 		eraser.LoadBitmap();
+		eraser.SetAttack(FALSE);
+		eraser.isJump(FALSE);
 
 		energyBar.AddBitmap(IDB_energy1);
+		Lives_P.AddBitmap(IDB_Lives_P,RGB(0,0,0));
+		coin_P.AddBitmap(IDB_Coin1);
 		gameMap.LoadBitmap();
+		gameMap.OnShow();
 		background.LoadBitmap(IDB_Map);					// 載入背景的圖形
 
 		//
@@ -429,13 +935,14 @@ namespace game_framework {
 		help.LoadBitmap(IDB_HELP, RGB(255, 255, 255));				// 載入說明的圖形
 		corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 		//bball.LoadBitmap();										// 載入圖形
-
-		hits_left.LoadBitmap();
+		Lives.LoadBitmap();
 		CAudio::Instance()->Load(AUDIO_DING, "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 		CAudio::Instance()->Load(AUDIO_LAKE, "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
 		CAudio::Instance()->Load(AUDIO_NTUT, "sounds\\ntut.mid");	// 載入編號2的聲音ntut.mid
 		CAudio::Instance()->Load(AUDIO_INTRO, "sounds\\intro.mp3");	// 載入編號2的聲音ntut.mid
 		CAudio::Instance()->Load(AUDIO_HIT, "sounds\\hit.mp3");	// 載入編號2的聲音ntut.mid
+		CAudio::Instance()->Load(AUDIO_EAT, "sounds\\eat.mp3");	// 載入編號2的聲音ntut.mid
+
 
 
 		//
@@ -451,11 +958,20 @@ namespace game_framework {
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
 		const char KEY_ATTACK = 0x5A; // keyboard的Z按鍵
 		const char KEY_JUMP = 0x58; // keyboard的X按鍵
+		const char KEY_L1 = 0x31; // keyboard的X按鍵
+		const char KEY_L2 = 0x32; // keyboard的X按鍵
+		const char KEY_L3 = 0x33; // keyboard的X按鍵
+		const char KEY_L4 = 0x34; // keyboard的X按鍵
+		const char KEY_L5 = 0x35; // keyboard的X按鍵
+		const char KEY_L6 = 0x36; // keyboard的X按鍵
+		const char KEY_L7 = 0x37; // keyboard的X按鍵
+		const char KEY_L8 = 0x38; // keyboard的X按鍵
 
 		const char KEY_WEAPONA = 0x41; // keyboard的A按鍵
 		const char KEY_WEAPONS = 0x53; // keyboard的S按鍵
 		const char KEY_WEAPOND = 0x44; // keyboard的D按鍵
 		const char KEY_WEAPONF = 0x46; // keyboard的F按鍵
+
 
 		if (nChar == KEY_RIGHT) {
 			eraser.SetMovingRight(true);
@@ -485,6 +1001,55 @@ namespace game_framework {
 			eraser.SetWeaponD(true);
 		if (nChar == KEY_WEAPONF)
 			eraser.SetWeaponF(true);
+		if (nChar == KEY_L1) {
+			gameMap.SetMapXY(-64, 1676);
+			gameMap.JumpLevel(1);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
+		if (nChar == KEY_L2) {
+			gameMap.SetMapXY(-64, 1676);
+			gameMap.JumpLevel(2);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
+		if (nChar == KEY_L3) {
+			gameMap.SetMapXY(-64, 1676);
+			gameMap.JumpLevel(3);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
+		if (nChar == KEY_L4) {
+			gameMap.SetMapXY(-64, 1676);
+			gameMap.JumpLevel(4);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
+		if (nChar == KEY_L5) {
+			gameMap.SetMapXY(-64, 1676);
+			gameMap.JumpLevel(5);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
+		if (nChar == KEY_L6) {
+			eraser.SetXY(288, -18 * 64);
+			gameMap.SetMapXY(-64, 1676-18*64);			
+			gameMap.JumpLevel(6);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
+		if (nChar == KEY_L7) {
+			gameMap.SetMapXY(-64, 1676);
+			gameMap.JumpLevel(7);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
+		if (nChar == KEY_L8) {
+			gameMap.SetMapXY(-64, 1676);
+			gameMap.JumpLevel(8);
+			gameMap.changeLevel();
+			GotoGameState(GAME_STATE_2);
+		}
 	}
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
@@ -569,14 +1134,21 @@ namespace game_framework {
 		//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 		//
 		//help.ShowBitmap();					// 貼上說明圖
-		//hits_left.ShowBitmap();
-		for (int num = 0; num <= 7; num++) {
+		for (int num = 0; num <= 15; num++) {
 			ball[num].OnShow(&gameMap);				// 貼上第i號球*/
+		}
+		for (int num = 0; num <= 15; num++) {
+			coin[num].OnShow(&gameMap);				// 貼上第i號球*/
 		}
 		//bball.OnShow();						// 貼上彈跳的球
 		eraser.OnShow(&gameMap);					// 貼上擦子
-		energyBar.SetTopLeft(500, 0);
+		energyBar.SetTopLeft(560, 0);
 		energyBar.OnShow();					// 貼上命
+		Lives_P.SetTopLeft(572, 453);
+		Lives_P.OnShow();					// 貼上LIVES字樣
+		coin_P.SetTopLeft(572,32 );
+		coin_P.OnShow();					// 貼上LIVES字樣
+		Lives.ShowBitmap();
 		//
 		//  貼上左上及右下角落的圖
 		//
@@ -602,7 +1174,7 @@ namespace game_framework {
 
 	void CGameState2::OnBeginState()
 	{
-		counter = 30 * 2; // 5 seconds
+		counter = 30 * 2; // 2 seconds
 	}
 
 	void CGameState2::OnInit()
@@ -634,7 +1206,7 @@ namespace game_framework {
 		pDC->SetBkColor(RGB(0, 0, 0));
 		pDC->SetTextColor(RGB(255, 255, 0));
 		char str[80];								// Demo 數字對字串的轉換
-		sprintf(str, "Level %d",gameMap.getLevel());
+		sprintf(str, "Level %d", gameMap.getLevel());
 		pDC->TextOut(240, 210, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
@@ -654,16 +1226,22 @@ namespace game_framework {
 	void CGameStateDead::OnMove()
 	{
 		counter--;
-		if (counter < 0) {
+		if (counter < 0 && eraser.getLife()<=0) {
+			gameMap.restart();
 			CAudio::Instance()->Stop(AUDIO_END);			// 撥放 WAVE
 			CAudio::Instance()->Play(AUDIO_MENU, true);			// 撥放 WAVE
-
 			GotoGameState(GAME_STATE_INIT);
+		}
+		else if ((counter < 0 && eraser.getLife() > 0)) {
+			eraser.lifeLeft(-1);
+			GotoGameState(GAME_STATE_RUN);
+
 		}
 	}
 
 	void CGameStateDead::OnBeginState()
 	{
+
 		counter = 30 * 2; // 5 seconds
 	}
 
@@ -683,7 +1261,7 @@ namespace game_framework {
 		//
 
 		ShowInitProgress(100);
-
+		gameMap.LoadBitmap();
 	}
 
 	void CGameStateDead::OnShow()
@@ -695,7 +1273,7 @@ namespace game_framework {
 		pDC->SetBkColor(RGB(0, 0, 0));
 		pDC->SetTextColor(RGB(255, 255, 0));
 		char str[80];								// Demo 數字對字串的轉換
-		sprintf(str, "Game Over ! (%d)", counter / 30);
+		sprintf(str, "YOU DIED ! (%d)", counter / 30);
 		pDC->TextOut(240, 210, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC

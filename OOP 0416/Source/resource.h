@@ -80,6 +80,12 @@
 #define IDB_brick_BWG                   204
 #define IDB_BITMAP5                     205
 #define IDB_Sting                       205
+#define IDB_Coin                        206
+#define IDB_Lives_P                     207
+#define IDB_Coin1                       208
+#define IDB_MINUS1                      209
+#define IDB_10                          210
+#define IDB_00                          210
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -92,7 +98,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        206
+#define _APS_NEXT_RESOURCE_VALUE        208
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

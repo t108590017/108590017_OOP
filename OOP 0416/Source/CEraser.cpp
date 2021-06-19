@@ -9,11 +9,11 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CEraser: Eraser class
 	/////////////////////////////////////////////////////////////////////////////
-
+	int Life = 0;
 
 	CEraser::CEraser()
 	{
-		Initialize();
+		Initialize(&gameMap);
 	}
 
 	int CEraser::GetX1()
@@ -36,12 +36,17 @@ namespace game_framework {
 		return y + Attack.Height();
 	}
 
-	void CEraser::Initialize()
+	void CEraser::Initialize(GameMap* m)
 	{
 		const int X_POS = 64;
 		const int Y_POS = 1920;
+		if (m->getLevel() == 6) {
+			y = 1920 - 18 * 64;
+		}
+		else {
+			y = Y_POS;
+		}
 		x = X_POS;
-		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 	}
 
@@ -59,23 +64,23 @@ namespace game_framework {
 		const int STEP_SIZE = 20;
 		animation.OnMove();
 		if (isMovingLeft) {
-			if ((m->IsEmpty(x - STEP_SIZE, y))==1 || (m->IsEmpty(x - STEP_SIZE, y)) == 4 || (m->IsEmpty(x - STEP_SIZE, y)) == 5)
+			if ((m->IsEmpty(x - STEP_SIZE, y))==1 || (m->IsEmpty(x - STEP_SIZE, y)) == 4 || (m->IsEmpty(x - STEP_SIZE, y)) == 5|| (m->IsEmpty(x - STEP_SIZE, y)) == 14|| (m->IsEmpty(x - STEP_SIZE, y)) == 30)
 				x -= STEP_SIZE;
 		}
 		if (isMovingRight) {
-			if ((m->IsEmpty(x + STEP_SIZE+50, y))==1 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 4 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 5)
+			if ((m->IsEmpty(x + STEP_SIZE+50, y))==1 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 4 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 5 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 14 || (m->IsEmpty(x + STEP_SIZE + 50, y)) == 30)
 				x += STEP_SIZE;
 		}
-		if (((m->IsEmpty(x, y + STEP_SIZE + 54)) == 1) || ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 5)) {
+		if (((m->IsEmpty(x, y + STEP_SIZE + 54)) == 1) || ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 5) ) {
 			y += 32;
-			if (((m->IsEmpty(x, y + STEP_SIZE + 54)) == 13)) {
+			if (((m->IsEmpty(x, y + STEP_SIZE + 54)) == 13)|| ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 14) || ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 30)) {
 				is_Alive = false;
 			}
 		}
 		
 		if (isJumping) {
 			int a = 0;
-			if (m->IsEmpty(x, y - STEP_SIZE ) == 1|| m->IsEmpty(x, y - STEP_SIZE) == 5 || m->IsEmpty(x, y - STEP_SIZE) == 4) {
+			if (m->IsEmpty(x, y - STEP_SIZE ) == 1|| m->IsEmpty(x, y - STEP_SIZE) == 5 || m->IsEmpty(x, y - STEP_SIZE) == 4 || (m->IsEmpty(x, y - STEP_SIZE) == 14) || (m->IsEmpty(x, y - STEP_SIZE) == 30)) {
 				a -= STEP_SIZE;
 				y -= 64;
 			}
@@ -124,7 +129,13 @@ namespace game_framework {
 		else
 			return FALSE;
 	}
-
+	bool CEraser::reLevel(GameMap* m) {
+		if ((m->IsEmpty(x - 20, y)) == 30 || (m->IsEmpty(x + 20, y)) == 30) {
+			return TRUE;
+		}
+		else
+			return FALSE;
+	}
 	void CEraser::SetMovingDown(bool flag)
 	{
 		isMovingDown = flag;
@@ -134,7 +145,16 @@ namespace game_framework {
 	{
 		isMovingLeft = flag;
 	}
-
+	
+	int CEraser::getLife() {
+		return Life;
+	}
+	void CEraser::lifeLeft(int add) {
+		Life+=add;
+	}
+	void CEraser::restart() {
+		Life=3;
+	}
 	void CEraser::SetMovingRight(bool flag)
 	{
 		isMovingRight = flag;

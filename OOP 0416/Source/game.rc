@@ -180,7 +180,17 @@ IDB_brick_BW            BITMAP                  "..\\Bitmaps\\brick_BW.bmp"
 
 IDB_brick_BWG           BITMAP                  "..\\Bitmaps\\brick_BWG.bmp"
 
-IDB_Sting               BITMAP                  "C:\\Users\\owner\\Documents\\GitTutorial\\OOP 0416\\Bitmaps\\sting.bmp"
+IDB_Sting               BITMAP                  "..\\Bitmaps\\sting.bmp"
+
+IDB_Coin                BITMAP                  "D:\\NTUT\\OOP¹CÀ¸\\OOP 0416\\Bitmaps\\coin.bmp"
+
+IDB_Lives_P             BITMAP                  "..\\bitmaps\\bitmap8.bmp"
+
+IDB_Coin1               BITMAP                  "..\\bitmaps\\coin1.bmp"
+
+IDB_MINUS1              BITMAP                  "..\\bitmaps\\minus1.bmp"
+
+IDB_00                  BITMAP                  "..\\bitmaps\\bmp10.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

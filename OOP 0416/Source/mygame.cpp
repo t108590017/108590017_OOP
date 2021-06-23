@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
+#include <time.h>
 
 
 namespace game_framework {
@@ -72,10 +73,16 @@ namespace game_framework {
 			}
 		}
 		if (nChar == KEY_ENTER && y == 312){
-			eraser.restart();
+			eraser.restart(); 
 			gameMap.SetMapXY(-64, 1676);
 			gameMap.changeLevel();
-			GotoGameState(GAME_STATE_2);
+			GotoGameState(GAME_STATE_RUN);
+		}
+		else if (nChar == KEY_ENTER && y == 339) {
+			GotoGameState(GAME_STATE_CONFIGURATION);
+		}
+		else if (nChar == KEY_ENTER && y == 366) {
+			GotoGameState(GAME_STATE_ABOUT);
 		}
 		else if (nChar == KEY_ENTER && y == 420)
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
@@ -119,6 +126,8 @@ namespace game_framework {
 		if (ENABLE_GAME_PAUSE)
 			pDC->TextOut(5, 425, "Press Ctrl-Q to pause the Game.");
 		pDC->TextOut(5, 455, "Press Alt-F4 or ESC to Quit.");*/
+
+
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
@@ -191,10 +200,12 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	CGameStateRun::CGameStateRun(CGame* g)
-		: CGameState(g), NUMBALLS(28)
+		: CGameState(g), NUMBALLS(40)
 	{
 		ball = new CBall[NUMBALLS];
 		coin = new CCoin[NUMBALLS];
+		health = new CHealth[NUMBALLS];
+
 
 	}
 
@@ -202,6 +213,8 @@ namespace game_framework {
 	{
 		delete[] ball;
 		delete[] coin;
+		delete[] health;
+
 
 	}
 
@@ -232,6 +245,25 @@ namespace game_framework {
 		//for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
 		//int y_pos = i / BALL_PER_ROW;
 		if (gameMap.getLevel() == 1) {
+			for (int num = 0; num < 5; num++) {
+				health[num].SetXY(0, 0);
+				health[num].SetDelay(0);
+				health[num].SetIsAlive(false);
+			}
+			for (int num = 0; num < 25; num++) {
+				coin[num].SetXY(0, 0);
+				coin[num].SetDelay(0);
+				coin[num].SetIsAlive(false);
+				ball[num].SetXY(0, 0);
+				ball[num].SetDelay(0);
+				ball[num].SetIsAlive(false);
+			}
+			health[0].SetXY(77 * 64, 29*64);
+			health[0].SetDelay(0);
+			health[0].SetIsAlive(true);
+			health[1].SetXY(1024 + 91 * 64, 1921-2*64);
+			health[1].SetDelay(0);
+			health[1].SetIsAlive(true);
 			coin[0].SetXY(1024 + 6 * 64, 1921);
 			coin[0].SetDelay(0);
 			coin[0].SetIsAlive(true);
@@ -310,6 +342,19 @@ namespace game_framework {
 			ball[7].SetIsAlive(true);
 		}
 		else if (gameMap.getLevel() == 2) {
+			for (int num = 0; num < 5; num++) {
+				health[num].SetXY(0, 0);
+				health[num].SetDelay(0);
+				health[num].SetIsAlive(false);
+			}
+			for (int num = 0; num < 25; num++) {
+				coin[num].SetXY(0, 0);
+				coin[num].SetDelay(0);
+				coin[num].SetIsAlive(false);
+				ball[num].SetXY(0, 0);
+				ball[num].SetDelay(0);
+				ball[num].SetIsAlive(false);
+			}
 
 			coin[0].SetXY(14 * 64, 1921 + 6 * 64);
 			coin[0].SetDelay(0);
@@ -398,6 +443,27 @@ namespace game_framework {
 			ball[7].SetIsAlive(true);
 		}
 		else if (gameMap.getLevel() == 3) {
+			for (int num = 0; num < 5; num++) {
+				health[num].SetXY(0, 0);
+				health[num].SetDelay(0);
+				health[num].SetIsAlive(false);
+			}
+			for (int num = 0; num < 25; num++) {
+				coin[num].SetXY(0, 0);
+				coin[num].SetDelay(0);
+				coin[num].SetIsAlive(false);
+				ball[num].SetXY(0, 0);
+				ball[num].SetDelay(0);
+				ball[num].SetIsAlive(false);
+			}
+			health[0].SetXY(21*64,20*64);
+			health[0].SetDelay(0);
+			health[0].SetIsAlive(true);
+
+			health[1].SetXY(66 * 64, 27 * 64);
+			health[1].SetDelay(0);
+			health[1].SetIsAlive(true);
+
 			ball[0].SetXY(12 * 64, 1921);
 			ball[0].SetDelay(0);
 			ball[0].SetIsAlive(true);
@@ -499,6 +565,23 @@ namespace game_framework {
 			coin[17].SetIsAlive(true);
 		}
 		else if (gameMap.getLevel() == 4) {
+			for (int num = 0; num < 5; num++) {
+				health[num].SetXY(0, 0);
+				health[num].SetDelay(0);
+				health[num].SetIsAlive(false);
+			}
+			for (int num = 0; num < 25; num++) {
+				coin[num].SetXY(0, 0);
+				coin[num].SetDelay(0);
+				coin[num].SetIsAlive(false);
+				ball[num].SetXY(0, 0);
+				ball[num].SetDelay(0);
+				ball[num].SetIsAlive(false);
+			}
+			health[0].SetXY(120 * 64, 13* 64);
+			health[0].SetDelay(0);
+			health[0].SetIsAlive(true);
+
 			coin[0].SetXY(17 * 64, 1921 - 5 * 64);
 			coin[0].SetDelay(0);
 			coin[0].SetIsAlive(true);
@@ -600,14 +683,14 @@ namespace game_framework {
 			coin[12].SetDelay(0);
 			coin[12].SetIsAlive(true);
 
-			ball[12].SetXY(57 * 64, 1921 - 24 * 64);
+			ball[12].SetXY(57 * 64, 1921 - 26 * 64);
 			ball[12].SetDelay(0);
 			ball[12].SetIsAlive(true);
 
 		}
 		else if (gameMap.getLevel() == 5) {
 			for (int num = 0; num < 15; num++) {
-				ball[num].SetXY(0,0);
+				ball[num].SetXY(0, 0);
 				ball[num].SetDelay(0);
 				ball[num].SetIsAlive(false);
 
@@ -617,11 +700,314 @@ namespace game_framework {
 			}
 		}
 		else if (gameMap.getLevel() == 6) {
-		
+			for (int num = 0; num < 5; num++) {
+				health[num].SetXY(0, 0);
+				health[num].SetDelay(0);
+				health[num].SetIsAlive(false);
+			}
+			for (int num = 0; num < 25; num++) {
+				coin[num].SetXY(0, 0);
+				coin[num].SetDelay(0);
+				coin[num].SetIsAlive(false);
+				ball[num].SetXY(0, 0);
+				ball[num].SetDelay(0);
+				ball[num].SetIsAlive(false);
+			}
+			health[0].SetXY(68 * 64, 10 * 64);
+			health[0].SetDelay(0);
+			health[0].SetIsAlive(true);
+			coin[0].SetXY(45 * 64, 10 * 64);
+			coin[0].SetDelay(0);
+			coin[0].SetIsAlive(true);
+			coin[1].SetXY(43 * 64, 10 * 64);
+			coin[1].SetDelay(0);
+			coin[1].SetIsAlive(true);
+			coin[2].SetXY(44 * 64, 10 * 64);
+			coin[2].SetDelay(0);
+			coin[2].SetIsAlive(true);
+
+			coin[3].SetXY(52 * 64, 10 * 64);
+			coin[3].SetDelay(0);
+			coin[3].SetIsAlive(true);
+
+			ball[0].SetXY(32 * 64, 13 * 64);
+			ball[0].SetDelay(0);
+			ball[0].SetIsAlive(true);
+
+			ball[1].SetXY(41 * 64, 13 * 64);
+			ball[1].SetDelay(0);
+			ball[1].SetIsAlive(true);
+
+			ball[1].SetXY(59 * 64, 13 * 64);
+			ball[1].SetDelay(0);
+			ball[1].SetIsAlive(true);
+			ball[2].SetXY(60 * 64, 13 * 64);
+			ball[2].SetDelay(0);
+			ball[2].SetIsAlive(true);
+			ball[3].SetXY(61 * 64, 13 * 64);
+			ball[3].SetDelay(0);
+			ball[3].SetIsAlive(true);
+			ball[4].SetXY(62 * 64, 13 * 64);
+			ball[4].SetDelay(0);
+			ball[4].SetIsAlive(true);
+			ball[5].SetXY(63 * 64, 13 * 64);
+			ball[5].SetDelay(0);
+			ball[5].SetIsAlive(true);
+			ball[6].SetXY(64 * 64, 13 * 64);
+			ball[6].SetDelay(0);
+			ball[6].SetIsAlive(true);
+			ball[7].SetXY(65 * 64, 13 * 64);
+			ball[7].SetDelay(0);
+			ball[7].SetIsAlive(true);
+			ball[8].SetXY(66 * 64, 13 * 64);
+			ball[8].SetDelay(0);
+			ball[8].SetIsAlive(true);
+			ball[9].SetXY(58 * 64, 13 * 64);
+			ball[9].SetDelay(0);
+			ball[9].SetIsAlive(true);
+			ball[10].SetXY(73 * 64, 12 * 64);
+			ball[10].SetDelay(0);
+			ball[10].SetIsAlive(true);
+			ball[11].SetXY(78 * 64, 13 * 64);
+			ball[11].SetDelay(0);
+			ball[11].SetIsAlive(true);
+			ball[12].SetXY(79 * 64, 13 * 64);
+			ball[12].SetDelay(0);
+			ball[12].SetIsAlive(true);
+			ball[13].SetXY(98 * 64, 16 * 64);
+			ball[13].SetDelay(0);
+			ball[13].SetIsAlive(true);
+			ball[14].SetXY(99 * 64, 16 * 64);
+			ball[14].SetDelay(0);
+			ball[14].SetIsAlive(true);
+
+			coin[4].SetXY(101 * 64, 16 * 64);
+			coin[4].SetDelay(0);
+			coin[4].SetIsAlive(true);
+			coin[5].SetXY(106 * 64, 17 * 64);
+			coin[5].SetDelay(0);
+			coin[5].SetIsAlive(true);
+			coin[6].SetXY(107 * 64, 17 * 64);
+			coin[6].SetDelay(0);
+			coin[6].SetIsAlive(true);
+
+			ball[15].SetXY(113 * 64, 17 * 64);
+			ball[15].SetDelay(0);
+			ball[15].SetIsAlive(true);
+			ball[16].SetXY(114 * 64, 17 * 64);
+			ball[16].SetDelay(0);
+			ball[16].SetIsAlive(true);
+			ball[17].SetXY(115 * 64, 17 * 64);
+			ball[17].SetDelay(0);
+			ball[17].SetIsAlive(true);
+
+			ball[18].SetXY(130 * 64, 17 * 64);
+			ball[18].SetDelay(0);
+			ball[18].SetIsAlive(true);
+			ball[19].SetXY(135 * 64, 17 * 64);
+			ball[19].SetDelay(0);
+			ball[19].SetIsAlive(true);
+			ball[20].SetXY(133 * 64, 14 * 64);
+			ball[20].SetDelay(0);
+			ball[20].SetIsAlive(true);
+			coin[7].SetXY(139 * 64, 18 * 64);
+			coin[7].SetDelay(0);
+			coin[7].SetIsAlive(true);
+			coin[8].SetXY(125 * 64, 24 * 64);
+			coin[8].SetDelay(0);
+			coin[8].SetIsAlive(true);
+			ball[21].SetXY(130 * 64, 24 * 64);
+			ball[21].SetDelay(0);
+			ball[21].SetIsAlive(true);
+			ball[25].SetXY(103 * 64, 24 * 64);
+			ball[25].SetDelay(0);
+			ball[25].SetIsAlive(true);
+			coin[10].SetXY(102 * 64, 24 * 64);
+			coin[10].SetDelay(0);
+			coin[10].SetIsAlive(true);
+			coin[11].SetXY(100 * 64, 25 * 64);
+			coin[11].SetDelay(0);
+			coin[11].SetIsAlive(true);
+			ball[22].SetXY(99 * 64, 28 * 64);
+			ball[22].SetDelay(0);
+			ball[22].SetIsAlive(true);
+
+
+			coin[14].SetXY(71 * 64, 25 * 64);
+			coin[14].SetDelay(0);
+			coin[14].SetIsAlive(true);
+			coin[12].SetXY(71 * 64, 24 * 64);
+			coin[12].SetDelay(0);
+			coin[12].SetIsAlive(true);
+			coin[13].SetXY(71 * 64, 23 * 64);
+			coin[13].SetDelay(0);
+			coin[13].SetIsAlive(true);
+			health[1].SetXY(72 * 64, 23 * 64);
+			health[1].SetDelay(0);
+			health[1].SetIsAlive(true);
+			ball[23].SetXY(72 * 64, 25 * 64);
+			ball[23].SetDelay(0);
+			ball[23].SetIsAlive(true);
+			ball[24].SetXY(75 * 64, 25 * 64);
+			ball[24].SetDelay(0);
+			ball[24].SetIsAlive(true);
+			health[1].SetXY(28 * 64, 28 * 64);
+			health[1].SetDelay(0);
+			health[1].SetIsAlive(true);
 
 		}
-	}
+		else if (gameMap.getLevel() == 7) {
+			for (int num = 0; num < 5; num++) {
+				health[num].SetXY(0, 0);
+				health[num].SetDelay(0);
+				health[num].SetIsAlive(false);
+			}
+			for (int num = 0; num < 25; num++) {
+				coin[num].SetXY(0, 0);
+				coin[num].SetDelay(0);
+				coin[num].SetIsAlive(false);
+				ball[num].SetXY(0, 0);
+				ball[num].SetDelay(0);
+				ball[num].SetIsAlive(false);
+			}
+			ball[0].SetXY(12 * 64, 35 * 64);
+			ball[0].SetDelay(0);
+			ball[0].SetIsAlive(true);
 
+			coin[0].SetXY(22 * 64, 31 * 64);
+			coin[0].SetDelay(0);
+			coin[0].SetIsAlive(true);
+
+			ball[1].SetXY(12 * 64, 28* 64);
+			ball[1].SetDelay(0);
+			ball[1].SetIsAlive(true);
+
+			ball[2].SetXY(13 * 64, 22 * 64);
+			ball[2].SetDelay(0);
+			ball[2].SetIsAlive(true);
+
+			ball[3].SetXY(8 * 64, 25 * 64);
+			ball[3].SetDelay(0);
+			ball[3].SetIsAlive(true);
+			ball[4].SetXY(8 * 64, 20 * 64);
+			ball[4].SetDelay(0);
+			ball[4].SetIsAlive(true);
+			ball[5].SetXY(13 * 64, 17 * 64);
+			ball[5].SetDelay(0);
+			ball[5].SetIsAlive(true);
+			ball[6].SetXY(23 * 64, 17 * 64);
+			ball[6].SetDelay(0);
+			ball[6].SetIsAlive(true);
+			ball[7].SetXY(24 * 64, 17 * 64);
+			ball[7].SetDelay(0);
+			ball[7].SetIsAlive(true);
+			ball[8].SetXY(25 * 64, 17 * 64);
+			ball[8].SetDelay(0);
+			ball[8].SetIsAlive(true);
+			coin[1].SetXY(2 * 64, 20 * 64);
+			coin[1].SetDelay(0);
+			coin[1].SetIsAlive(true);
+			ball[9].SetXY(39 * 64, 14 * 64);
+			ball[9].SetDelay(0);
+			ball[9].SetIsAlive(true);
+			ball[10].SetXY(51 * 64, 14 * 64);
+			ball[10].SetDelay(0);
+			ball[10].SetIsAlive(true);
+			coin[2].SetXY(44 * 64, 17 * 64);
+			coin[2].SetDelay(0);
+			coin[2].SetIsAlive(true);
+			coin[3].SetXY(45 * 64, 17 * 64);
+			coin[3].SetDelay(0);
+			coin[3].SetIsAlive(true);
+			coin[17].SetXY(46 * 64, 17 * 64);
+			coin[17].SetDelay(0);
+			coin[17].SetIsAlive(true);
+			health[0].SetXY(45 * 64, 16 * 64);
+			health[0].SetDelay(0);
+			health[0].SetIsAlive(true);
+
+			ball[11].SetXY(59 * 64, 13 * 64);
+			ball[11].SetDelay(0);
+			ball[11].SetIsAlive(true);
+			ball[12].SetXY(59 * 64, 11 * 64);
+			ball[12].SetDelay(0);
+			ball[12].SetIsAlive(true);
+			coin[4].SetXY(59 * 64, 13 * 64);
+			coin[4].SetDelay(0);
+			coin[4].SetIsAlive(true);
+			coin[5].SetXY(58 * 64, 13 * 64);
+			coin[5].SetDelay(0);
+			coin[5].SetIsAlive(true);
+			coin[6].SetXY(60 * 64, 13 * 64);
+			coin[6].SetDelay(0);
+			coin[6].SetIsAlive(true);
+			coin[7].SetXY(59 * 64, 11 * 64);
+			coin[7].SetDelay(0);
+			coin[7].SetIsAlive(true);
+			coin[8].SetXY(58 * 64, 11* 64);
+			coin[8].SetDelay(0);
+			coin[8].SetIsAlive(true);
+			coin[9].SetXY(60 * 64, 11 * 64);
+			coin[9].SetDelay(0);
+			coin[9].SetIsAlive(true);
+
+			coin[10].SetXY(84 * 64, 16 * 64);
+			coin[10].SetDelay(0);
+			coin[10].SetIsAlive(true);
+			coin[11].SetXY(85 * 64, 16 * 64);
+			coin[11].SetDelay(0);
+			coin[11].SetIsAlive(true);
+			coin[12].SetXY(86 * 64, 16 * 64);
+			coin[12].SetDelay(0);
+			coin[12].SetIsAlive(true);
+			health[1].SetXY(85 * 64, 17 * 64);
+			health[1].SetDelay(0);
+			health[1].SetIsAlive(true);
+			ball[13].SetXY(85 * 64, 13 * 64);
+			ball[13].SetDelay(0);
+			ball[13].SetIsAlive(true);
+			ball[14].SetXY(79 * 64, 10 * 64);
+			ball[14].SetDelay(0);
+			ball[14].SetIsAlive(true);
+			ball[15].SetXY(85 * 64, 7 * 64);
+			ball[15].SetDelay(0);
+			ball[15].SetIsAlive(true);
+			ball[16].SetXY(76 * 64, 5 * 64);
+			ball[16].SetDelay(0);
+			ball[16].SetIsAlive(true);
+			ball[17].SetXY(70 * 64, 5 * 64);
+			ball[17].SetDelay(0);
+			ball[17].SetIsAlive(true);
+			ball[18].SetXY(57 * 64, 5 * 64);
+			ball[18].SetDelay(0);
+			ball[18].SetIsAlive(true);
+			ball[19].SetXY(56 * 64, 5 * 64);
+			ball[19].SetDelay(0);
+			ball[19].SetIsAlive(true);
+			ball[20].SetXY(58 * 64, 5 * 64);
+			ball[20].SetDelay(0);
+			ball[20].SetIsAlive(true);
+			coin[13].SetXY(64 * 64, 7 * 64);
+			coin[13].SetDelay(0);
+			coin[13].SetIsAlive(true);
+
+			ball[21].SetXY(44 * 64, 5 * 64);
+			ball[21].SetDelay(0);
+			ball[21].SetIsAlive(true);
+			ball[22].SetXY(46 * 64, 5 * 64);
+			ball[22].SetDelay(0);
+			ball[22].SetIsAlive(true);
+			coin[14].SetXY(36 * 64, 7 * 64);
+			coin[14].SetDelay(0);
+			coin[14].SetIsAlive(true);
+			coin[15].SetXY(26 * 64, 7 * 64);
+			coin[15].SetDelay(0);
+			coin[15].SetIsAlive(true);
+			coin[16].SetXY(25 * 64, 7 * 64);
+			coin[16].SetDelay(0);
+			coin[16].SetIsAlive(true);
+		}
+	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
 	{
@@ -649,6 +1035,21 @@ namespace game_framework {
 		//
 		// 判斷擦子是否碰到球
 		//
+		if (health[0].IsAlive() && health[0].HitEraser(&eraser)) {
+			health[0].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			eraser.setEnergy(5);
+		}
+		if (health[1].IsAlive() && health[1].HitEraser(&eraser)) {
+			health[1].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			eraser.setEnergy(5);
+		}
+		if (health[2].IsAlive() && health[1].HitEraser(&eraser)) {
+			health[2].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			eraser.setEnergy(5);
+		}
 		if (coin[0].IsAlive() && coin[0].HitEraser(&eraser)) {
 			coin[0].SetIsAlive(false);
 			CAudio::Instance()->Play(AUDIO_EAT);
@@ -730,7 +1131,22 @@ namespace game_framework {
 			CAudio::Instance()->Play(AUDIO_EAT);
 			coin[0].setLeft(1);
 		}
-		if (ball[0].IsAlive() && ball[0].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (coin[16].IsAlive() && coin[16].HitEraser(&eraser)) {
+			coin[16].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[17].IsAlive() && coin[16].HitEraser(&eraser)) {
+			coin[17].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (coin[18].IsAlive() && coin[18].HitEraser(&eraser)) {
+			coin[18].SetIsAlive(false);
+			CAudio::Instance()->Play(AUDIO_EAT);
+			coin[0].setLeft(1);
+		}
+		if (ball[0].IsAlive() && ball[0].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
 				ball[0].SetIsAlive(false);
@@ -738,8 +1154,9 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
 		}
-		if (ball[1].IsAlive() && ball[1].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[1].IsAlive() && ball[1].HitEraser(&eraser) && eraser.isAttacking() && hits==0) {
 			enemyHealth2 += 1;
 			if (enemyHealth2 == 5) {
 				ball[1].SetIsAlive(false);
@@ -748,8 +1165,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
-		if (ball[2].IsAlive() && ball[2].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[2].IsAlive() && ball[2].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth3 += 1;
 			if (enemyHealth3 == 5) {
 				ball[2].SetIsAlive(false);
@@ -757,8 +1176,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
-		if (ball[3].IsAlive() && ball[3].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[3].IsAlive() && ball[3].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth4 += 1;
 			if (enemyHealth4 == 5) {
 				enemyHealth4 = 0;
@@ -767,9 +1188,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
 
 		}
-		if (ball[4].IsAlive() && ball[4].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[4].IsAlive() && ball[4].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
 				ball[4].SetIsAlive(false);
@@ -777,8 +1199,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
-		if (ball[5].IsAlive() && ball[5].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[5].IsAlive() && ball[5].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
 				ball[5].SetIsAlive(false);
@@ -786,8 +1210,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
-		if (ball[6].IsAlive() && ball[6].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[6].IsAlive() && ball[6].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
 				ball[6].SetIsAlive(false);
@@ -795,8 +1221,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
-		if (ball[7].IsAlive() && ball[7].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[7].IsAlive() && ball[7].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
 				ball[7].SetIsAlive(false);
@@ -804,8 +1232,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
-		if (ball[8].IsAlive() && ball[8].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[8].IsAlive() && ball[8].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
 				ball[8].SetIsAlive(false);
@@ -813,8 +1243,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
-		if (ball[9].IsAlive() && ball[9].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[9].IsAlive() && ball[9].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
 				ball[9].SetIsAlive(false);
@@ -822,8 +1254,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
-		if (ball[10].IsAlive() && ball[10].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[10].IsAlive() && ball[10].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
 				ball[10].SetIsAlive(false);
@@ -831,8 +1265,10 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
-		if (ball[11].IsAlive() && ball[11].HitEraser(&eraser) && eraser.isAttacking()) {
+		if (ball[11].IsAlive() && ball[11].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
 			enemyHealth1 += 1;
 			if (enemyHealth1 == 5) {
 				ball[11].SetIsAlive(false);
@@ -840,7 +1276,298 @@ namespace game_framework {
 			}
 			CAudio::Instance()->Play(AUDIO_HIT);
 			hits_left.Add(-1);
+			hits = 1;
+
 		}
+		if (ball[12].IsAlive() && ball[12].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[12].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[13].IsAlive() && ball[13].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[13].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[14].IsAlive() && ball[14].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[14].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[15].IsAlive() && ball[15].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[15].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[16].IsAlive() && ball[16].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[16].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[17].IsAlive() && ball[17].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[17].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[18].IsAlive() && ball[18].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[18].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[19].IsAlive() && ball[19].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[19].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[20].IsAlive() && ball[20].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[20].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[21].IsAlive() && ball[21].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[21].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[22].IsAlive() && ball[22].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[22].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+		}
+		if (ball[23].IsAlive() && ball[23].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[23].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[24].IsAlive() && ball[24].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[24].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[25].IsAlive() && ball[25].HitEraser(&eraser) && eraser.isAttacking() && hits == 0) {
+			enemyHealth1 += 1;
+			if (enemyHealth1 == 5) {
+				ball[25].SetIsAlive(false);
+				enemyHealth1 = 0;
+			}
+			CAudio::Instance()->Play(AUDIO_HIT);
+			hits_left.Add(-1);
+			hits = 1;
+
+		}
+		if (ball[0].IsAlive() && ball[0].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[1].IsAlive() && ball[1].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[2].IsAlive() && ball[2].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[3].IsAlive() && ball[3].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[4].IsAlive() && ball[4].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[5].IsAlive() && ball[5].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[6].IsAlive() && ball[6].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[7].IsAlive() && ball[7].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[8].IsAlive() && ball[8].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[9].IsAlive() && ball[9].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[10].IsAlive() && ball[10].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[11].IsAlive() && ball[11].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[12].IsAlive() && ball[12].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[13].IsAlive() && ball[13].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[14].IsAlive() && ball[14].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[14].IsAlive() && ball[14].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[15].IsAlive() && ball[15].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[16].IsAlive() && ball[16].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[17].IsAlive() && ball[17].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[18].IsAlive() && ball[18].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[19].IsAlive() && ball[19].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[20].IsAlive() && ball[20].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[21].IsAlive() && ball[21].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[22].IsAlive() && ball[22].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[23].IsAlive() && ball[23].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[24].IsAlive() && ball[24].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+		if (ball[25].IsAlive() && ball[25].HurtEraser(&eraser)) {
+			CAudio::Instance()->Play(AUDIO_HURT);
+			eraser.setHurt(-1);
+			eraser.setHurtCount();
+		}
+
 		if (eraser.hitGoal1(&gameMap) == TRUE) {
 			//CAudio::Instance()->Play(AUDIO_END);			// 撥放 WAVE
 			if (gameMap.getLevel() == 6) {
@@ -864,9 +1591,12 @@ namespace game_framework {
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
 		}
+		if (eraser.getEnergy() == 0) {
+			eraser.SetAlive(false);
+		}
 		if (eraser.isAlive() == FALSE) {
 			eraser.SetXY(288, 0);
-
+			eraser.setEnergy(5);
 			if (gameMap.getLevel() == 6) {
 				eraser.SetXY(288, -18 * 64);
 				gameMap.SetMapXY(-64, 1676 - 18 * 64);
@@ -879,11 +1609,12 @@ namespace game_framework {
 			}
 			GotoGameState(GAME_STATE_DEAD);
 		}
-		if (coin[0].getLeft() >= 10) {
+		if (coin[0].getLeft() >= 30) {
 			Lives.Add(1);
 			eraser.lifeLeft(1);
-			coin[0].setLeft(-coin[0].getLeft());
+			coin[0].setLeft(-30);
 		}
+
 		gameMap.OnMove();
 
 		//
@@ -912,6 +1643,8 @@ namespace game_framework {
 			ball[i].LoadBitmap();								// 載入第i個球的圖形*/
 		for (i = 0; i < NUMBALLS; i++)
 			coin[i].LoadBitmap();
+		for (i = 0; i < NUMBALLS; i++)
+			health[i].LoadBitmap();
 
 		eraser.LoadBitmap();
 		eraser.SetAttack(FALSE);
@@ -939,9 +1672,11 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_DING, "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 		CAudio::Instance()->Load(AUDIO_LAKE, "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
 		CAudio::Instance()->Load(AUDIO_NTUT, "sounds\\ntut.mid");	// 載入編號2的聲音ntut.mid
-		CAudio::Instance()->Load(AUDIO_INTRO, "sounds\\intro.mp3");	// 載入編號2的聲音ntut.mid
-		CAudio::Instance()->Load(AUDIO_HIT, "sounds\\hit.mp3");	// 載入編號2的聲音ntut.mid
-		CAudio::Instance()->Load(AUDIO_EAT, "sounds\\eat.mp3");	// 載入編號2的聲音ntut.mid
+		CAudio::Instance()->Load(AUDIO_INTRO, "sounds\\intro.mp3");	// 載入進入關卡聲音
+		CAudio::Instance()->Load(AUDIO_HIT, "sounds\\hit.mp3");		// 載入攻擊聲音
+		CAudio::Instance()->Load(AUDIO_EAT, "sounds\\eat.mp3");		// 載入吃的聲音
+		CAudio::Instance()->Load(AUDIO_HURT, "sounds\\hurt.mp3");	// 載入受傷的聲音
+
 
 
 
@@ -958,19 +1693,32 @@ namespace game_framework {
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
 		const char KEY_ATTACK = 0x5A; // keyboard的Z按鍵
 		const char KEY_JUMP = 0x58; // keyboard的X按鍵
-		const char KEY_L1 = 0x31; // keyboard的X按鍵
-		const char KEY_L2 = 0x32; // keyboard的X按鍵
-		const char KEY_L3 = 0x33; // keyboard的X按鍵
-		const char KEY_L4 = 0x34; // keyboard的X按鍵
-		const char KEY_L5 = 0x35; // keyboard的X按鍵
-		const char KEY_L6 = 0x36; // keyboard的X按鍵
-		const char KEY_L7 = 0x37; // keyboard的X按鍵
-		const char KEY_L8 = 0x38; // keyboard的X按鍵
+		const char KEY_L1 = 0x31; // keyboard的1按鍵
+		const char KEY_L2 = 0x32; // keyboard的2按鍵
+		const char KEY_L3 = 0x33; // keyboard的3按鍵
+		const char KEY_L4 = 0x34; // keyboard的4按鍵
+		const char KEY_L5 = 0x35; // keyboard的5按鍵
+		const char KEY_L6 = 0x36; // keyboard的6按鍵
+		const char KEY_L7 = 0x37; // keyboard的7按鍵
+		const char KEY_L8 = 0x38; // keyboard的8按鍵
+		const char KEY_J = 74; // keyboard的J按鍵
+		const char KEY_U = 85; // keyboard的U按鍵
+		const char KEY_M = 77; // keyboard的M按鍵
+		const char KEY_P = 80; // keyboard的P按鍵
+		const char KEY_G = 71; // keyboard的G按鍵
+		const char KEY_O = 79; // keyboard的O按鍵
+		const char KEY_D = 68; // keyboard的D按鍵
+		const char KEY_F = 70; // keyboard的F按鍵
+		const char KEY_L = 76; // keyboard的L按鍵
+		const char KEY_Y = 89; // keyboard的Y按鍵
+		const char KEY_FLY = 67; // keyboard的C按鍵
+
+
+		const char KEY_ESC = 27; // keyboard的X按鍵
+
 
 		const char KEY_WEAPONA = 0x41; // keyboard的A按鍵
 		const char KEY_WEAPONS = 0x53; // keyboard的S按鍵
-		const char KEY_WEAPOND = 0x44; // keyboard的D按鍵
-		const char KEY_WEAPONF = 0x46; // keyboard的F按鍵
 
 
 		if (nChar == KEY_RIGHT) {
@@ -991,65 +1739,104 @@ namespace game_framework {
 			eraser.SetMovingUp(true);
 		if (nChar == KEY_DOWN)
 			eraser.SetMovingDown(true);
-		if (nChar == KEY_ATTACK)
-			eraser.SetAttack(true);
+		if (nChar == KEY_ATTACK) {
+				eraser.SetAttack(true);
+		}
 		if (nChar == KEY_WEAPONA)
 			eraser.SetWeaponA(true);
 		if (nChar == KEY_WEAPONS)
 			eraser.SetWeaponS(true);
-		if (nChar == KEY_WEAPOND)
-			eraser.SetWeaponD(true);
-		if (nChar == KEY_WEAPONF)
-			eraser.SetWeaponF(true);
-		if (nChar == KEY_L1) {
-			gameMap.SetMapXY(-64, 1676);
-			gameMap.JumpLevel(1);
-			gameMap.changeLevel();
-			GotoGameState(GAME_STATE_2);
+		if (nChar == KEY_J) {	
+			gameMap.setJ(true);
 		}
-		if (nChar == KEY_L2) {
-			gameMap.SetMapXY(-64, 1676);
-			gameMap.JumpLevel(2);
-			gameMap.changeLevel();
-			GotoGameState(GAME_STATE_2);
+		if (nChar == KEY_U && gameMap.getJ() ) {
+			gameMap.setU(true);
 		}
-		if (nChar == KEY_L3) {
+		if (nChar == KEY_M && gameMap.getJ() && gameMap.getU()) {
+			gameMap.setM(true);
+		}
+		if (nChar == KEY_P && gameMap.getJ() && gameMap.getU() && gameMap.getM()) {
+				gameMap.setP(true);
+		}
+		if (nChar == KEY_G) {
+			eraser.setG(true);
+		}
+		if (nChar == KEY_O && eraser.getG()) {
+			eraser.setO(true);
+		}
+		if (nChar == KEY_D && eraser.getG() && eraser.getO()) {
+			eraser.lifeLeft(99);
+			eraser.setEnergy(99999);
+			Lives.SetInteger(99);
+			eraser.setG(false);
+			eraser.setO(false);
+			eraser.setD(false);
+		}
+
+		if (nChar == KEY_F) {
+			eraser.setF(true);
+		}
+		if (nChar == KEY_L && eraser.getF()) {
+			eraser.setL(true);
+		}
+		if (nChar == KEY_Y && eraser.getL() && eraser.getF()) {
+			eraser.setY(true);
+		}
+		if (nChar == KEY_FLY && eraser.getL() && eraser.getF() && eraser.getY()) {
+			eraser.setFLY(true);
+		}
+		if (nChar == KEY_L1 && gameMap.getJ() && gameMap.getU() && gameMap.getM() && gameMap.getP()) {
+				gameMap.SetMapXY(-64, 1676);
+				gameMap.JumpLevel(1);
+				gameMap.changeLevel();
+				GotoGameState(GAME_STATE_2);	
+		}
+		if (  nChar == KEY_L2 && gameMap.getJ() && gameMap.getU() && gameMap.getM() && gameMap.getP()) {
+				gameMap.SetMapXY(-64, 1676);
+				gameMap.JumpLevel(2);
+				gameMap.changeLevel();
+				GotoGameState(GAME_STATE_2);
+			
+		}
+		if (nChar == KEY_L3 && gameMap.getJ() && gameMap.getU() && gameMap.getM() && gameMap.getP()) {
 			gameMap.SetMapXY(-64, 1676);
 			gameMap.JumpLevel(3);
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
 		}
-		if (nChar == KEY_L4) {
+		if (nChar == KEY_L4 && gameMap.getJ() && gameMap.getU() && gameMap.getM() && gameMap.getP()) {
 			gameMap.SetMapXY(-64, 1676);
 			gameMap.JumpLevel(4);
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
 		}
-		if (nChar == KEY_L5) {
+		if (nChar == KEY_L5 && gameMap.getJ() && gameMap.getU() && gameMap.getM() && gameMap.getP()) {
 			gameMap.SetMapXY(-64, 1676);
 			gameMap.JumpLevel(5);
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
 		}
-		if (nChar == KEY_L6) {
+		if (nChar == KEY_L6 && gameMap.getJ() && gameMap.getU() && gameMap.getM() && gameMap.getP()) {
 			eraser.SetXY(288, -18 * 64);
 			gameMap.SetMapXY(-64, 1676-18*64);			
 			gameMap.JumpLevel(6);
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
 		}
-		if (nChar == KEY_L7) {
+		if (nChar == KEY_L7 && gameMap.getJ() && gameMap.getU() && gameMap.getM() && gameMap.getP()) {
 			gameMap.SetMapXY(-64, 1676);
 			gameMap.JumpLevel(7);
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
 		}
-		if (nChar == KEY_L8) {
+		if (nChar == KEY_L8 && gameMap.getJ() && gameMap.getU() && gameMap.getM() && gameMap.getP()) {
 			gameMap.SetMapXY(-64, 1676);
 			gameMap.JumpLevel(8);
 			gameMap.changeLevel();
 			GotoGameState(GAME_STATE_2);
 		}
+		if (nChar == KEY_ESC)
+			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 	}
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
@@ -1059,11 +1846,11 @@ namespace game_framework {
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
 		const char KEY_ATTACK = 0x5A; // keyboard的Z按鍵
 		const char KEY_JUMP = 0x58; // keyboard的X按鍵
+		const char KEY_FLY = 67; // keyboard的C按鍵
 
 		const char KEY_WEAPONA = 0x41; // keyboard的A按鍵
 		const char KEY_WEAPONS = 0x53; // keyboard的S按鍵
-		const char KEY_WEAPOND = 0x44; // keyboard的D按鍵
-		const char KEY_WEAPONF = 0x46; // keyboard的F按鍵
+
 
 		if (nChar == KEY_RIGHT) {
 			eraser.SetMovingRight(false);
@@ -1084,26 +1871,27 @@ namespace game_framework {
 			eraser.SetMovingUp(false);
 		if (nChar == KEY_DOWN)
 			eraser.SetMovingDown(false);
-		if (nChar == KEY_ATTACK)
+		if (nChar == KEY_ATTACK) {
 			eraser.SetAttack(false);
+			hits = 0;
+		}
 		if (nChar == KEY_WEAPONA)
 			eraser.SetWeaponA(true);
 		if (nChar == KEY_WEAPONS)
 			eraser.SetWeaponS(true);
-		if (nChar == KEY_WEAPOND)
-			eraser.SetWeaponD(true);
-		if (nChar == KEY_WEAPONF)
-			eraser.SetWeaponF(true);
+		if (nChar == KEY_FLY) {
+			eraser.setFLY(false);
+		}
 	}
 
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
-		eraser.SetMovingLeft(true);
+		//eraser.SetMovingLeft(true);
 	}
 
 	void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		eraser.SetMovingLeft(false);
+		//eraser.SetMovingLeft(false);
 	}
 
 	void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
@@ -1113,12 +1901,12 @@ namespace game_framework {
 
 	void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
-		eraser.SetMovingRight(true);
+		//eraser.SetMovingRight(true);
 	}
 
 	void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		eraser.SetMovingRight(false);
+		//eraser.SetMovingRight(false);
 	}
 
 	void CGameStateRun::OnShow()
@@ -1134,16 +1922,51 @@ namespace game_framework {
 		//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 		//
 		//help.ShowBitmap();					// 貼上說明圖
-		for (int num = 0; num <= 15; num++) {
+		for (int num = 0; num <= 28; num++) {
 			ball[num].OnShow(&gameMap);				// 貼上第i號球*/
 		}
-		for (int num = 0; num <= 15; num++) {
+		for (int num = 0; num <= 23; num++) {
 			coin[num].OnShow(&gameMap);				// 貼上第i號球*/
 		}
+		for (int num = 0; num <= 5; num++) {
+			health[num].OnShow(&gameMap);				// 貼上第i號球*/
+		}
+
 		//bball.OnShow();						// 貼上彈跳的球
 		eraser.OnShow(&gameMap);					// 貼上擦子
 		energyBar.SetTopLeft(560, 0);
-		energyBar.OnShow();					// 貼上命
+		if(eraser.getEnergy()==5){
+			energyBar.deleteBMP();
+			energyBar.AddBitmap(IDB_energy1);
+
+			energyBar.OnShow();					// 貼上5命
+		}
+		else if (eraser.getEnergy() == 4) {
+			energyBar.deleteBMP();
+			energyBar.AddBitmap(IDB_energy2);
+			energyBar.OnShow();					// 貼上4命
+		}
+		else if (eraser.getEnergy() == 3) {
+			energyBar.deleteBMP();
+			energyBar.AddBitmap(IDB_energy3);
+			energyBar.OnShow();					// 貼上3命
+		}
+		else if (eraser.getEnergy() == 2) {
+			energyBar.deleteBMP();
+			energyBar.AddBitmap(IDB_energy4);
+			energyBar.OnShow();					// 貼上2命
+		}
+		else if (eraser.getEnergy() == 1) {
+			energyBar.deleteBMP();
+			energyBar.AddBitmap(IDB_energy5);
+			energyBar.OnShow();					// 貼上1命
+		}
+		else {
+			energyBar.deleteBMP();
+			energyBar.AddBitmap(IDB_energy6);
+			energyBar.OnShow();					// 貼上1命
+		}
+
 		Lives_P.SetTopLeft(572, 453);
 		Lives_P.OnShow();					// 貼上LIVES字樣
 		coin_P.SetTopLeft(572,32 );
@@ -1228,11 +2051,14 @@ namespace game_framework {
 		counter--;
 		if (counter < 0 && eraser.getLife()<=0) {
 			gameMap.restart();
+
+			eraser.setRestart(true);
 			CAudio::Instance()->Stop(AUDIO_END);			// 撥放 WAVE
 			CAudio::Instance()->Play(AUDIO_MENU, true);			// 撥放 WAVE
 			GotoGameState(GAME_STATE_INIT);
 		}
 		else if ((counter < 0 && eraser.getLife() > 0)) {
+			eraser.setHurt(5);
 			eraser.lifeLeft(-1);
 			GotoGameState(GAME_STATE_RUN);
 
@@ -1280,4 +2106,107 @@ namespace game_framework {
 
 	}
 
+
+	/////////////////////////////////////////////////////////////////////////////
+	// 這個class為遊戲的結束狀態(Game Over)
+	/////////////////////////////////////////////////////////////////////////////
+
+
+	CGameStateAbout::CGameStateAbout(CGame* g)
+		: CGameState(g)
+	{
+	}
+
+	void CGameStateAbout::OnMove()
+	{
+	}
+
+	void CGameStateAbout::OnBeginState()
+	{
+	}
+	void CGameStateAbout::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+	{
+		if (nChar != NULL) {
+			GotoGameState(GAME_STATE_INIT);
+		}
+	}
+
+
+	void CGameStateAbout::OnInit()
+	{
+		//
+		// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
+		//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
+		//
+		ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
+		//
+		// 開始載入資料
+		//
+		About.AddBitmap(IDB_About);
+
+		//
+		// 最終進度為100%
+		//
+
+		ShowInitProgress(100);
+
+	}
+
+	void CGameStateAbout::OnShow()
+	{
+		About.OnShow();
+
+
+	}
+	/////////////////////////////////////////////////////////////////////////////
+// 這個class為遊戲的結束狀態(Game Over)
+/////////////////////////////////////////////////////////////////////////////
+
+
+	CGameStateConfiguration::CGameStateConfiguration(CGame* g)
+		: CGameState(g)
+	{
+	}
+
+	void CGameStateConfiguration::OnMove()
+	{
+	}
+
+	void CGameStateConfiguration::OnBeginState()
+	{
+	}
+	void CGameStateConfiguration::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+	{
+		if (nChar != NULL) {
+			GotoGameState(GAME_STATE_INIT);
+		}
+	}
+
+
+	void CGameStateConfiguration::OnInit()
+	{
+		//
+		// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
+		//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
+		//
+		ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
+		//
+		// 開始載入資料
+		//
+		Configuration.AddBitmap(IDB_Configuration);
+
+		//
+		// 最終進度為100%
+		//
+
+		ShowInitProgress(100);
+
+	}
+
+	void CGameStateConfiguration::OnShow()
+	{
+		Configuration.OnShow();
+
+
+	}
 }

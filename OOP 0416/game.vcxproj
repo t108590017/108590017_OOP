@@ -277,12 +277,14 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\MainFrm.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Source\Map.cpp" />
+    <ClCompile Include="Source\Shoot.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -313,9 +315,11 @@
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\gameView.h" />
+    <ClInclude Include="Source\Health.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Resource.h" />
+    <ClInclude Include="Source\Shoot.h" />
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
@@ -329,6 +333,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Bitmaps\6block.bmp" />
+    <Image Include="Bitmaps\About.bmp" />
+    <Image Include="Bitmaps\About.png" />
     <Image Include="Bitmaps\background.bmp" />
     <Image Include="bitmaps\bitmap8.bmp" />
     <Image Include="Bitmaps\block1.bmp" />
@@ -365,6 +371,7 @@
     <Image Include="Bitmaps\choose.bmp" />
     <Image Include="Bitmaps\coin.bmp" />
     <Image Include="bitmaps\coin1.bmp" />
+    <Image Include="Bitmaps\Configuration.bmp" />
     <Image Include="Bitmaps\enemy.bmp" />
     <Image Include="Bitmaps\enemy_L.bmp" />
     <Image Include="Bitmaps\enemy_walk.bmp" />
@@ -372,8 +379,10 @@
     <Image Include="Bitmaps\finish.bmp" />
     <Image Include="Bitmaps\floor.bmp" />
     <Image Include="Bitmaps\floor_D.bmp" />
+    <Image Include="Bitmaps\heal.bmp" />
     <Image Include="Bitmaps\menu.bmp" />
     <Image Include="bitmaps\minus1.bmp" />
+    <Image Include="Bitmaps\rifle_bullet.bmp" />
     <Image Include="Bitmaps\sting.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bitmap5.bmp" />

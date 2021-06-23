@@ -6,6 +6,7 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
+
 	class CEraser
 	{
 	public:
@@ -33,13 +34,37 @@ namespace game_framework {
 		bool isAlive();				// 判斷是否死
 		int  getLife();
 		void restart();
+		int  isFacing();
 		void lifeLeft(int add);
+		int  getAttackType();
+		void setAttackType(int n);
 		bool isAttacking();
 		bool GetDirection();
 		bool isJump(bool jump);
 		bool hitGoal1(GameMap* m);
+		bool isRestart();
+		void setRestart(bool n);
 		void SetXY(int nx, int ny);		// 設定擦子左上角座標
 		bool reLevel(GameMap* m);
+		void setG(bool flag);
+		void setO(bool flag);
+		void setD(bool flag);
+		bool getG();
+		bool getO();
+		bool getD();
+		void setF(bool flag);
+		void setL(bool flag);
+		void setY(bool flag);
+		bool getF();
+		bool getL();
+		bool getY();
+		void setFLY(bool flag);
+		void setHurt(int H);
+		int  getEnergy();
+		void setHurtCount();
+		void setEnergy(int n);
+		
+
 
 	protected:
 		GameMap		gameMap;	//地圖
@@ -49,6 +74,7 @@ namespace game_framework {
 		CAnimation Attack;		    // 往左的動畫
 		bool Direction;				// 是否在右   右為true左為false
 		int x, y;					// 擦子左上角座標
+		int canAttack = 0;
 		bool isMovingDown;			// 是否正在往下移動
 		bool isJumping =false;
 		bool isMovingLeft;			// 是否正在往左移動
@@ -64,6 +90,19 @@ namespace game_framework {
 		bool isVchip;				// 是否是電
 		bool isGoal;				// 是否是到目標
 		bool is_Alive;				// 是否是到目標
+		float attacktime = 15;
+		int jumpTime = 0;
+		bool G = false;
+		bool O = false;
+		bool D = false;
+		bool isFly = false;
+		bool F = false;
+		bool L = false;
+		bool Y = false;
+
+		int  energy = 5;
+		int counter=30*1;	// 倒數之計數器
+		int hurtCount = 0;
 
 
 

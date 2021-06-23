@@ -5,14 +5,14 @@
       <UniqueIdentifier>{1a913106-0be0-4476-b0ce-2aa855072614}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="MFC">
-      <UniqueIdentifier>{da904ee8-7f59-4a6c-b3ff-b91b6fb6d0ea}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameLibrary">
       <UniqueIdentifier>{df7aa532-3fdf-46a0-b3fc-8f5922e8d9e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="MyGame">
       <UniqueIdentifier>{0c798913-b7d2-4e26-8241-0f83266cd626}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLibrary\MFC">
+      <UniqueIdentifier>{da904ee8-7f59-4a6c-b3ff-b91b6fb6d0ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -100,22 +100,22 @@
       <Filter>GameLibrary</Filter>
     </ClCompile>
     <ClCompile Include="Source\game.cpp">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClCompile>
     <ClCompile Include="Source\gameDoc.cpp">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClCompile>
     <ClCompile Include="Source\gamelib.cpp">
       <Filter>GameLibrary</Filter>
     </ClCompile>
     <ClCompile Include="Source\gameView.cpp">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClCompile>
     <ClCompile Include="Source\MainFrm.cpp">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClCompile>
     <ClCompile Include="Source\StdAfx.cpp">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClCompile>
     <ClCompile Include="Source\mygame.cpp">
       <Filter>MyGame</Filter>
@@ -135,31 +135,37 @@
     <ClCompile Include="Source\Coin.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Shoot.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Health.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
       <Filter>GameLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Source\game.h">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClInclude>
     <ClInclude Include="Source\gameDoc.h">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClInclude>
     <ClInclude Include="Source\gamelib.h">
       <Filter>GameLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Source\gameView.h">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClInclude>
     <ClInclude Include="Source\MainFrm.h">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClInclude>
     <ClInclude Include="Source\Resource.h">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClInclude>
     <ClInclude Include="Source\StdAfx.h">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ClInclude>
     <ClInclude Include="Source\mygame.h">
       <Filter>MyGame</Filter>
@@ -179,10 +185,16 @@
     <ClInclude Include="Source\Coin.h">
       <Filter>MyGame</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Shoot.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Health.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">
-      <Filter>MFC</Filter>
+      <Filter>GameLibrary\MFC</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +364,19 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="bitmaps\bmp19.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\rifle_bullet.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\About.png" />
+    <Image Include="Bitmaps\About.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\Configuration.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\heal.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

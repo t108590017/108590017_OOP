@@ -182,7 +182,7 @@ IDB_brick_BWG           BITMAP                  "..\\Bitmaps\\brick_BWG.bmp"
 
 IDB_Sting               BITMAP                  "..\\Bitmaps\\sting.bmp"
 
-IDB_Coin                BITMAP                  "D:\\NTUT\\OOP¹CÀ¸\\OOP 0416\\Bitmaps\\coin.bmp"
+IDB_Coin                BITMAP                  "..\\Bitmaps\\coin.bmp"
 
 IDB_Lives_P             BITMAP                  "..\\bitmaps\\bitmap8.bmp"
 
@@ -191,6 +191,14 @@ IDB_Coin1               BITMAP                  "..\\bitmaps\\coin1.bmp"
 IDB_MINUS1              BITMAP                  "..\\bitmaps\\minus1.bmp"
 
 IDB_00                  BITMAP                  "..\\bitmaps\\bmp10.bmp"
+
+IDB_Shoot               BITMAP                  "..\\Bitmaps\\rifle_bullet.bmp"
+
+IDB_About               BITMAP                  "..\\Bitmaps\\About.bmp"
+
+IDB_Configuration       BITMAP                  "D:\\NTUT\\OOP¹CÀ¸\\OOP 0416\\Bitmaps\\Configuration.bmp"
+
+IDB_HEALTH              BITMAP                  "D:\\NTUT\\OOP¹CÀ¸\\OOP 0416\\Bitmaps\\heal.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

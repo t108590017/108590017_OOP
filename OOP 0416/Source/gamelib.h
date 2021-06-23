@@ -9,7 +9,7 @@
 #define DEFAULT_BG_COLOR	 RGB(0,0,0)	// 遊戲畫面預設的背景顏色(黑色)
 #define GAME_CYCLE_TIME		 33		    // 每33ms跑一次Move及Show(每秒30次)
 #define SHOW_GAME_CYCLE_TIME false		// 是否在debug mode顯示cycle time
-#define ENABLE_GAME_PAUSE	 true		// 是否允許以 Ctrl-Q 暫停遊戲
+#define ENABLE_GAME_PAUSE	 false		// 是否允許以 Ctrl-Q 暫停遊戲
 #define ENABLE_AUDIO		 true		// 啟動音效介面
 
 /////////////////////////////////////////////////////////////////////////////
@@ -21,6 +21,8 @@ enum GAME_STATES {
 	GAME_STATE_RUN,
 	GAME_STATE_OVER,
 	GAME_STATE_2,
+	GAME_STATE_ABOUT,
+	GAME_STATE_CONFIGURATION,
 	GAME_STATE_DEAD
 
 
@@ -222,6 +224,10 @@ class CGameStateInit;
 class CGameStateRun;
 class CGameStateOver;
 class CGameState2;
+class CGameStateAbout;
+class CGameStateConfiguration;
+
+
 
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的各種狀態之Base class(是一個abstract class)

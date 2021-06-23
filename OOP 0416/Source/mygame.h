@@ -2,6 +2,9 @@
 #include "CBall.h"
 #include "CBouncingBall.h"
 #include "Coin.h"
+#include "Shoot.h"
+#include "Health.h"
+
 
 
 namespace game_framework {
@@ -17,6 +20,7 @@ namespace game_framework {
 		AUDIO_INTRO,
 		AUDIO_END,
 		AUDIO_EAT,
+		AUDIO_HURT,
 		AUDIO_HIT
 
 	};
@@ -78,8 +82,11 @@ namespace game_framework {
 		CMovingBitmap	help;		// 說明圖
 		CBall* ball;		// 球的陣列
 		CCoin* coin;
+		CHealth* health;
+
 		CMovingBitmap	corner;		// 角落圖
 		CBall	enemy1;		// 敵人圖
+		CShoot* Shoot;
 		CAnimation		energyBar,Lives_P,coin_P;
 
 		CEraser			eraser;		// 拍子
@@ -90,7 +97,7 @@ namespace game_framework {
 		int enemyHealth2 = 0;
 		int enemyHealth3 = 0;
 		int enemyHealth4 = 0;
-
+		int hits = 0;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -154,4 +161,52 @@ namespace game_framework {
 
 
 	};
+
+/////////////////////////////////////////////////////////////////////////////
+// 這個class為遊戲第二關介面
+// 每個Member function的Implementation都要弄懂
+/////////////////////////////////////////////////////////////////////////////
+
+	class CGameStateAbout: public CGameState {
+	public:
+		CGameStateAbout(CGame* g);
+		void OnBeginState();							// 設定每次重玩所需的變數
+		void OnInit();
+		void OnKeyUp(UINT, UINT, UINT);				// 處理鍵盤Down的動作
+	protected:
+		void OnMove();									// 移動遊戲元素
+		void OnShow();									// 顯示這個狀態的遊戲畫面
+
+	private:
+		int counter;	// 倒數之計數器
+		CEraser			eraser;		// 拍子
+		GameMap		gameMap;
+		CAnimation		About;
+
+
+	};
+	/////////////////////////////////////////////////////////////////////////////
+// 這個class為遊戲第二關介面
+// 每個Member function的Implementation都要弄懂
+/////////////////////////////////////////////////////////////////////////////
+
+	class CGameStateConfiguration : public CGameState {
+	public:
+		CGameStateConfiguration(CGame* g);
+		void OnBeginState();							// 設定每次重玩所需的變數
+		void OnInit();
+		void OnKeyUp(UINT, UINT, UINT);				// 處理鍵盤Down的動作
+	protected:
+		void OnMove();									// 移動遊戲元素
+		void OnShow();									// 顯示這個狀態的遊戲畫面
+
+	private:
+		int counter;	// 倒數之計數器
+		CEraser			eraser;		// 拍子
+		GameMap		gameMap;
+		CAnimation		Configuration;
+
+
+	};
+	
 }

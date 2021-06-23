@@ -15,16 +15,47 @@ namespace game_framework {
 	CBall::CBall()
 	{
 		is_alive = true;
-		x = y = dx = dy = index =0;
+		x = y = dx = dy = 0;
+		index = rand()%100;
 		delay_counter = 0;
 	}
 
 	bool CBall::HitEraser(CEraser *eraser)
 	{
 		// 檢測擦子所構成的矩形是否碰到球
-		return HitRectangle(eraser->GetX1(), eraser->GetY1(),
-			eraser->GetX2(), eraser->GetY2());
+		if (eraser->isFacing() == 0) {
+			return HitRectangle(eraser->GetX2()-24, eraser->GetY1(),
+				eraser->GetX2()+8, eraser->GetY2());
+		}
+		else {
+			return HitRectangle(eraser->GetX1()-8, eraser->GetY1(),
+				eraser->GetX1()+24, eraser->GetY2());
+		}
 	}
+
+	bool CBall::HurtEraser(CEraser* eraser)
+	{
+		// 檢測擦子所構成的矩形是否碰到球
+		if (eraser->isFacing() == 0 && eraser->isAttacking()) {
+			return HitRectangle(eraser->GetX1(), eraser->GetY1(),
+				eraser->GetX2() - 80, eraser->GetY2());
+		}
+		else if (eraser->isFacing() == 0 && !eraser->isAttacking()) {
+			return HitRectangle(eraser->GetX1(), eraser->GetY1(),
+				eraser->GetX2() - 40, eraser->GetY2());
+		}
+		else if (eraser->isFacing() == 1 && !eraser->isAttacking()) {
+			return HitRectangle(eraser->GetX1() + 30, eraser->GetY1(),
+				eraser->GetX1() + 50, eraser->GetY2());
+		}
+		else if (eraser->isFacing() == 1) {
+			return HitRectangle(eraser->GetX1() + 30, eraser->GetY1(),
+				eraser->GetX1() + 50, eraser->GetY2());
+		}
+		else
+			return false;
+	}
+
 
 	bool CBall::HitRectangle(int tx1, int ty1, int tx2, int ty2){
 		int x1 = x + dx;				// 球的左上角x座標

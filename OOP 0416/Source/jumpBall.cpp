@@ -5,40 +5,41 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "CEraser.h"
-#include "CBall.h"
+#include "jumpBall.h"
+
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
+	// CJBALL: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	CBall::CBall()
+	CJBALL::CJBALL()
 	{
 		is_alive = true;
 		x = y = dx = dy = 0;
-		index = rand()%100;
+		index = rand()%24;
 		delay_counter = 0;
 	}
-	int CBall::GetX1()
+	int CJBALL::GetX1()
 	{
 		return  x;
 	}
 
-	int CBall::GetY1()
+	int CJBALL::GetY1()
 	{
 		return  y;
 	}
 
-	int CBall::GetX2()
+	int CJBALL::GetX2()
 	{
-		return x + bmp.Width();;
+		return x + JumpBall.Width();;
 	}
 
-	int CBall::GetY2()
+	int CJBALL::GetY2()
 	{
-		return y + bmp.Height();
+		return y + JumpBall.Height();
 	}
-	bool CBall::HitEraser(CEraser *eraser)
+	bool CJBALL::HitEraser(CEraser *eraser)
 	{
 		// 檢測擦子所構成的矩形是否碰到球
 		if (eraser->isFacing() == 0) {
@@ -51,7 +52,7 @@ namespace game_framework {
 		}
 	}
 
-	bool CBall::HurtEraser(CEraser* eraser)
+	bool CJBALL::HurtEraser(CEraser* eraser)
 	{
 		// 檢測擦子所構成的矩形是否碰到球
 		if (eraser->isFacing() == 0 && eraser->isAttacking()) {
@@ -75,11 +76,11 @@ namespace game_framework {
 	}
 
 
-	bool CBall::HitRectangle(int tx1, int ty1, int tx2, int ty2){
+	bool CJBALL::HitRectangle(int tx1, int ty1, int tx2, int ty2){
 		int x1 = x + dx;				// 球的左上角x座標
 		int y1 = y + dy;				// 球的左上角y座標
-		int x2 = x1 + bmp.Width();	// 球的右下角x座標
-		int y2 = y1 + bmp.Height();	// 球的右下角y座標
+		int x2 = x1 + JumpBall.Width();	// 球的右下角x座標
+		int y2 = y1 + JumpBall.Height();	// 球的右下角y座標
 		
 									//
 									// 檢測球的矩形與參數矩形是否有交集
@@ -87,18 +88,18 @@ namespace game_framework {
 		return (tx2 >= x1 && tx1 <= x2 && ty2 >= y1 && ty1 <= y2);
 	}
 
-	bool CBall::IsAlive()
+	bool CJBALL::IsAlive()
 	{
 		return is_alive;
 	}
 
-	void CBall::LoadBitmap()
+	void CJBALL::LoadBitmap()
 	{
-		bmp.AddBitmap(IDB_enemy1, RGB(181, 230, 29));			// 載入球的圖形
+		JumpBall.AddBitmap(IDB_JBall, RGB(181, 230, 29));			// 載入球的圖形
 		
 	}
 
-	void CBall::OnMove()
+	void CJBALL::OnMove()
 	{
 		if (!is_alive)
 			return;
@@ -109,52 +110,40 @@ namespace game_framework {
 			// 計算球向對於圓心的位移量dx, dy
 			//
 			int i = 0;
-			const int STEPS = 100;
-			static const int DIFFX[] = { 0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60,60,60,60,60,60,60,60,60,60,60,57,54,51,48,45,42,39,36,33,30,27,24,21,18,15,12,9,6,3,0,-3,-6,-9,-12,-15,-18,-21,-24,-27,-30,-33,-36,-39,-42,-45,-48,-51,-54,-57,-60,-60,-60,-60,-60,-60,-60,-60,-60,-60,-57,-54,-51,-48,-45,-42,-39,-36,-33,-30,-27,-24,-21,-18,-15,-12,-9,-6,-3 };
-			static const int DIFFY[] = { 0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, };
+			const int STEPS = 24;
+			static const int DIFFX[] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+			static const int DIFFY[] = { 0, 0,-20,-30,-40,-60,-80,-100,-120,-140,-160,-180,-200,-180,-160,-140,-120,-100, -80, -60, -40, -20, 0, 0 };
 			index++;
 			if (index >= STEPS)
 				index = 0;
 			dx = DIFFX[index];
 			dy = DIFFY[index];
 
-			if ((index >= 20 &&index<=30)|| index >= 70 && index <= 80) {
-				bmp.deleteBMP();
-				bmp.AddBitmap(IDB_enemy1_S, RGB(181, 230, 29));
-			}
-			else if  (index > 30 && index < 70) {
-				bmp.deleteBMP();
-				bmp.AddBitmap(IDB_enemy1_L, RGB(181, 230, 29));
-			}
-			else {
-				bmp.deleteBMP();
-				bmp.AddBitmap(IDB_enemy1, RGB(181, 230, 29));
-			}
 		}
 	}
 
-	void CBall::SetDelay(double d)
+	void CJBALL::SetDelay(double d)
 	{
 		delay = d;
 	}
 
-	void CBall::SetIsAlive(bool alive)
+	void CJBALL::SetIsAlive(bool alive)
 	{
 		is_alive = alive;
 	}
 
-	void CBall::SetXY(int nx, int ny)
+	void CJBALL::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;
 	}
 
-	void CBall::OnShow(GameMap* m)
+	void CJBALL::OnShow(GameMap* m)
 	{
 		if (is_alive) {
-			bmp.SetTopLeft(m->ScreenX(x + dx), m->ScreenY(y + dy));
-			bmp.OnShow();
-			//bmp_center.SetTopLeft(x, y);
-			//bmp_center.ShowBitmap();
+			JumpBall.SetTopLeft(m->ScreenX(x + dx), m->ScreenY(y + dy));
+			JumpBall.OnShow();
+			//JumpBall_center.SetTopLeft(x, y);
+			//JumpBall_center.ShowBitmap();
 		}
 	}
 }

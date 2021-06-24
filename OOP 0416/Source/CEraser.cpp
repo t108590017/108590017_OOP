@@ -211,6 +211,15 @@ namespace game_framework {
 	{
 		isFacingRight = flag;
 	}
+
+	bool CEraser::getFacingLeft()
+	{
+		return isFacingLeft;
+	}
+	bool CEraser::getFacingRight()
+	{
+		return isFacingRight;
+	}
 	void CEraser::SetWeaponA(bool flag){
 		isStick = true;
 		isRifle = false;				
@@ -265,6 +274,12 @@ namespace game_framework {
 			return 0; //面對右邊
 		else
 			return 1; //面對左邊
+	}
+	bool CEraser::isitRifle() {
+		return isRifle;
+	}
+	bool CEraser::isitStick() {
+		return isStick;
 	}
 	void CEraser::setG(bool flag) {
 		G = true;

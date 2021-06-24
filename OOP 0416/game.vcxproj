@@ -257,7 +257,9 @@
     <None Include="res\Toolbar.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Ammo.cpp" />
     <ClCompile Include="Source\audio.cpp" />
+    <ClCompile Include="Source\BOSS.cpp" />
     <ClCompile Include="Source\CBall.cpp" />
     <ClCompile Include="Source\CBouncingBall.cpp" />
     <ClCompile Include="Source\CEraser.cpp" />
@@ -278,6 +280,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Source\Health.cpp" />
+    <ClCompile Include="Source\jumpBall.cpp" />
     <ClCompile Include="Source\MainFrm.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -307,7 +310,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Ammo.h" />
     <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\BOSS.h" />
     <ClInclude Include="Source\CBall.h" />
     <ClInclude Include="Source\CBouncingBall.h" />
     <ClInclude Include="Source\CEraser.h" />
@@ -316,6 +321,7 @@
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\gameView.h" />
     <ClInclude Include="Source\Health.h" />
+    <ClInclude Include="Source\jumpBall.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Resource.h" />
@@ -352,11 +358,14 @@
     <Image Include="bitmaps\bmp17.bmp" />
     <Image Include="bitmaps\bmp18.bmp" />
     <Image Include="bitmaps\bmp19.bmp" />
+    <Image Include="Bitmaps\Boss_gay.bmp" />
+    <Image Include="Bitmaps\Boss_gay_Attack2.bmp" />
     <Image Include="Bitmaps\brick_B.bmp" />
     <Image Include="Bitmaps\brick_BW.bmp" />
     <Image Include="Bitmaps\brick_BWG.bmp" />
     <Image Include="Bitmaps\brick_G.bmp" />
     <Image Include="Bitmaps\brick_R.bmp" />
+    <Image Include="Bitmaps\bullets_rifle.bmp" />
     <Image Include="Bitmaps\cartman_fire.bmp" />
     <Image Include="Bitmaps\cartman_fire_L.bmp" />
     <Image Include="Bitmaps\cartman_rifle.bmp" />
@@ -379,6 +388,7 @@
     <Image Include="Bitmaps\finish.bmp" />
     <Image Include="Bitmaps\floor.bmp" />
     <Image Include="Bitmaps\floor_D.bmp" />
+    <Image Include="Bitmaps\gun_rifle.bmp" />
     <Image Include="Bitmaps\heal.bmp" />
     <Image Include="Bitmaps\menu.bmp" />
     <Image Include="bitmaps\minus1.bmp" />

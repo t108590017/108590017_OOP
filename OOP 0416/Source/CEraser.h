@@ -32,6 +32,12 @@ namespace game_framework {
 		void SetWeaponF (bool flag);	// 設定是否換槍
 		void SetAlive(bool alive);	// 設定是否死
 		bool isAlive();				// 判斷是否死
+		bool isitRifle();
+		bool isitStick();
+
+		bool getFacingLeft();
+		bool getFacingRight();
+
 		int  getLife();
 		void restart();
 		int  isFacing();
@@ -77,19 +83,19 @@ namespace game_framework {
 		int canAttack = 0;
 		bool isMovingDown;			// 是否正在往下移動
 		bool isJumping =false;
-		bool isMovingLeft;			// 是否正在往左移動
-		bool isMovingRight;			// 是否正在往右移動
-		bool isMovingUp;			// 是否正在往上移動
-		bool isAttack;			    // 是否正在攻擊
-		bool isFacingLeft;			// 是否面相左邊
-		bool isFacingRight;			// 是否面相右邊
-		bool isStick;				// 是否是棍子
-		bool isRifle;				// 是否是槍
-		bool isFire;				// 是否是噴火
-		bool isRocket;				// 是否是火箭
-		bool isVchip;				// 是否是電
-		bool isGoal;				// 是否是到目標
-		bool is_Alive;				// 是否是到目標
+		bool isMovingLeft = false;;			// 是否正在往左移動
+		bool isMovingRight = true;			// 是否正在往右移動
+		bool isMovingUp = false;;			// 是否正在往上移動
+		bool isAttack = false;;			    // 是否正在攻擊
+		bool isFacingLeft=false;			// 是否面相左邊
+		bool isFacingRight=true;			// 是否面相右邊
+		bool isStick = true;				// 是否是棍子
+		bool isRifle = false;;				// 是否是槍
+		bool isFire = false;;				// 是否是噴火
+		bool isRocket = false;;				// 是否是火箭
+		bool isVchip = false;;				// 是否是電
+		bool isGoal = false;;				// 是否是到目標
+		bool is_Alive;				
 		float attacktime = 15;
 		int jumpTime = 0;
 		bool G = false;

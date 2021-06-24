@@ -5,40 +5,22 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "CEraser.h"
-#include "CBall.h"
+#include "CShoot.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	CBall::CBall()
+	CShoot::CShoot()
 	{
 		is_alive = true;
 		x = y = dx = dy = 0;
 		index = rand()%100;
 		delay_counter = 0;
 	}
-	int CBall::GetX1()
-	{
-		return  x;
-	}
 
-	int CBall::GetY1()
-	{
-		return  y;
-	}
-
-	int CBall::GetX2()
-	{
-		return x + bmp.Width();;
-	}
-
-	int CBall::GetY2()
-	{
-		return y + bmp.Height();
-	}
-	bool CBall::HitEraser(CEraser *eraser)
+	bool CShoot::HitEraser(CEraser *eraser)
 	{
 		// 檢測擦子所構成的矩形是否碰到球
 		if (eraser->isFacing() == 0) {
@@ -51,7 +33,7 @@ namespace game_framework {
 		}
 	}
 
-	bool CBall::HurtEraser(CEraser* eraser)
+	bool CShoot::HurtEraser(CEraser* eraser)
 	{
 		// 檢測擦子所構成的矩形是否碰到球
 		if (eraser->isFacing() == 0 && eraser->isAttacking()) {
@@ -75,7 +57,7 @@ namespace game_framework {
 	}
 
 
-	bool CBall::HitRectangle(int tx1, int ty1, int tx2, int ty2){
+	bool CShoot::HitRectangle(int tx1, int ty1, int tx2, int ty2){
 		int x1 = x + dx;				// 球的左上角x座標
 		int y1 = y + dy;				// 球的左上角y座標
 		int x2 = x1 + bmp.Width();	// 球的右下角x座標
@@ -87,18 +69,18 @@ namespace game_framework {
 		return (tx2 >= x1 && tx1 <= x2 && ty2 >= y1 && ty1 <= y2);
 	}
 
-	bool CBall::IsAlive()
+	bool CShoot::IsAlive()
 	{
 		return is_alive;
 	}
 
-	void CBall::LoadBitmap()
+	void CShoot::LoadBitmap()
 	{
 		bmp.AddBitmap(IDB_enemy1, RGB(181, 230, 29));			// 載入球的圖形
 		
 	}
 
-	void CBall::OnMove()
+	void CShoot::OnMove()
 	{
 		if (!is_alive)
 			return;
@@ -133,22 +115,22 @@ namespace game_framework {
 		}
 	}
 
-	void CBall::SetDelay(double d)
+	void CShoot::SetDelay(double d)
 	{
 		delay = d;
 	}
 
-	void CBall::SetIsAlive(bool alive)
+	void CShoot::SetIsAlive(bool alive)
 	{
 		is_alive = alive;
 	}
 
-	void CBall::SetXY(int nx, int ny)
+	void CShoot::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;
 	}
 
-	void CBall::OnShow(GameMap* m)
+	void CShoot::OnShow(GameMap* m)
 	{
 		if (is_alive) {
 			bmp.SetTopLeft(m->ScreenX(x + dx), m->ScreenY(y + dy));

@@ -4,26 +4,26 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class CBall
+	class CBOSS
 	{
 	public:
-		CBall();
+		CBOSS();
 		int  GetX1();					// 擦子左上角 x 座標
 		int  GetY1();					// 擦子左上角 y 座標
 		int  GetX2();					// 擦子右下角 x 座標
 		int  GetY2();					// 擦子右下角 y 座標
-		bool HitEraser(CEraser *eraser);						// 是否碰到擦子
+		bool HitEraser(CEraser* eraser);						// 是否碰到擦子
 		bool IsAlive();											// 是否活著
 		void LoadBitmap();										// 載入圖形
 		void OnMove();											// 移動
-		void OnShow(GameMap *m);											// 將圖形貼到畫面
+		void OnShow(GameMap* m);											// 將圖形貼到畫面
 		void SetXY(int nx, int ny);								// 設定圓心的座標
 		void SetIsAlive(bool alive);							// 設定是否活著
 		void SetDelay(double d);									// 設定旋轉的速度
 		bool HurtEraser(CEraser* eraser);
 	protected:
 		CMovingBitmap bmp_center;	// 圓心的圖			
-		CAnimation bmp;
+		CAnimation boss;
 		int x, y;					// 圓心的座標
 		int dx, dy;					// 球距離圓心的位移量
 		int index;					// 球的「角度」，0-17表示0-360度
@@ -31,6 +31,6 @@ namespace game_framework {
 		double delay;					// 旋轉的速度
 		bool is_alive;				// 是否活著
 	private:
-		bool HitRectangle(int tx1, int ty1, int tx2, int ty2  );	// 是否碰到參數範圍的矩形
+		bool HitRectangle(int tx1, int ty1, int tx2, int ty2);	// 是否碰到參數範圍的矩形
 	};
 }

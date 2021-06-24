@@ -196,9 +196,17 @@ IDB_Shoot               BITMAP                  "..\\Bitmaps\\rifle_bullet.bmp"
 
 IDB_About               BITMAP                  "..\\Bitmaps\\About.bmp"
 
-IDB_Configuration       BITMAP                  "D:\\NTUT\\OOP遊戲\\OOP 0416\\Bitmaps\\Configuration.bmp"
+IDB_Configuration       BITMAP                  "..\\Bitmaps\\Configuration.bmp"
 
-IDB_HEALTH              BITMAP                  "D:\\NTUT\\OOP遊戲\\OOP 0416\\Bitmaps\\heal.bmp"
+IDB_HEALTH              BITMAP                  "..\\Bitmaps\\heal.bmp"
+
+IDB_BOSS                BITMAP                  "..\\Bitmaps\\Boss_gay.bmp"
+
+IDB_Rifle               BITMAP                  "D:\\NTUT\\OOP遊戲\\OOP 0416\\Bitmaps\\gun_rifle.bmp"
+
+IDB_Bullet              BITMAP                  "D:\\NTUT\\OOP遊戲\\OOP 0416\\Bitmaps\\bullets_rifle.bmp"
+
+IDB_JBall               BITMAP                  "D:\\NTUT\\OOP遊戲\\OOP 0416\\Bitmaps\\Boss_gay_Attack2.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -117,6 +117,10 @@ namespace game_framework {
 	void CCoin::setLeft(int n) {
 
 		coin_left += n;
+		if (coin_left <= 0) {
+			coin_left = 0;
+		}
+
 		if (coin_left / 10 == 1) {
 			bmp_center2.deleteBMP();
 			bmp_center2.AddBitmap(IDB_1, RGB(0, 0, 0));

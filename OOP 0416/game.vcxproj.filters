@@ -135,10 +135,19 @@
     <ClCompile Include="Source\Coin.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Health.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BOSS.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Shoot.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Health.cpp">
+    <ClCompile Include="Source\Ammo.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\jumpBall.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
   </ItemGroup>
@@ -185,10 +194,19 @@
     <ClInclude Include="Source\Coin.h">
       <Filter>MyGame</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Health.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BOSS.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Shoot.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Health.h">
+    <ClInclude Include="Source\Ammo.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\jumpBall.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -377,6 +395,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Bitmaps\heal.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\Boss_gay.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\gun_rifle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\bullets_rifle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\Boss_gay_Attack2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

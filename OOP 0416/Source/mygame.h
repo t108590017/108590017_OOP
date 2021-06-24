@@ -4,6 +4,9 @@
 #include "Coin.h"
 #include "Shoot.h"
 #include "Health.h"
+#include "BOSS.h"
+#include "Ammo.h"
+#include "jumpBall.h"
 
 
 
@@ -21,6 +24,7 @@ namespace game_framework {
 		AUDIO_END,
 		AUDIO_EAT,
 		AUDIO_HURT,
+		AUDIO_GUN,
 		AUDIO_HIT
 
 	};
@@ -49,6 +53,8 @@ namespace game_framework {
 		CAnimation		finish;
 		GameMap		gameMap;
 		CEraser eraser;
+		CShoot  Shoot;
+		CCoin   Coin;
 
 
 
@@ -76,6 +82,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
+		const int		NUMSHOOT;
 		int energy;
 		GameMap		gameMap;	//地圖
 		CMovingBitmap	background;	// 背景圖
@@ -83,11 +90,13 @@ namespace game_framework {
 		CBall* ball;		// 球的陣列
 		CCoin* coin;
 		CHealth* health;
-
+		CShoot *Shoot;
+		CAmmo* Ammo;
+		CBOSS* BOSS;
+		CJBALL* Jball;
 		CMovingBitmap	corner;		// 角落圖
 		CBall	enemy1;		// 敵人圖
-		CShoot* Shoot;
-		CAnimation		energyBar,Lives_P,coin_P;
+		CAnimation		energyBar,Lives_P,coin_P,Gun_P;
 
 		CEraser			eraser;		// 拍子
 		CInteger		hits_left,Lives;	// 剩下的撞擊數
@@ -98,6 +107,7 @@ namespace game_framework {
 		int enemyHealth3 = 0;
 		int enemyHealth4 = 0;
 		int hits = 0;
+		int numberShoot = 0;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

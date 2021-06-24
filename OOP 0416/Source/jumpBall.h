@@ -4,10 +4,10 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class CBall
+	class CJBALL
 	{
 	public:
-		CBall();
+		CJBALL();
 		int  GetX1();					// 擦子左上角 x 座標
 		int  GetY1();					// 擦子左上角 y 座標
 		int  GetX2();					// 擦子右下角 x 座標
@@ -22,8 +22,8 @@ namespace game_framework {
 		void SetDelay(double d);									// 設定旋轉的速度
 		bool HurtEraser(CEraser* eraser);
 	protected:
-		CMovingBitmap bmp_center;	// 圓心的圖			
-		CAnimation bmp;
+		CMovingBitmap JumpBall_center;	// 圓心的圖			
+		CAnimation JumpBall;
 		int x, y;					// 圓心的座標
 		int dx, dy;					// 球距離圓心的位移量
 		int index;					// 球的「角度」，0-17表示0-360度

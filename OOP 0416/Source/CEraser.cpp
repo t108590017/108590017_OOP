@@ -91,7 +91,7 @@ namespace game_framework {
 
 		if ((((m->IsEmpty(x, y + STEP_SIZE + 54)) == 1) || ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 5) || jumpTime == -192)) {
 			y += 32;
-			if (((m->IsEmpty(x, y + STEP_SIZE + 54)) == 13) || ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 14) || ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 30)) {
+			if ((((m->IsEmpty(x, y + STEP_SIZE + 54)) == 13) || ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 14) || ((m->IsEmpty(x, y + STEP_SIZE + 54)) == 30))&&!(getG())&&!(getO())&&(!getD())) {
 				is_Alive = false;
 			}
 		}

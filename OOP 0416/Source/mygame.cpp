@@ -1232,7 +1232,7 @@ namespace game_framework {
 			coin[16].SetIsAlive(true);
 		}
 		else if (gameMap.getLevel()== 8) {
-		for (int num = 0; num < 5; num++) {
+		for (int num = 0; num < 20; num++) {
 			health[num].SetXY(0, 0);
 			health[num].SetDelay(0);
 			health[num].SetIsAlive(false);
@@ -1246,7 +1246,7 @@ namespace game_framework {
 			Ammo[num].SetDelay(0);
 			Ammo[num].SetIsAlive(false);
 		}
-		for (int num = 0; num < 25; num++) {
+		for (int num = 0; num < 30; num++) {
 			coin[num].SetXY(0, 0);
 			coin[num].SetDelay(0);
 			coin[num].SetIsAlive(false);
@@ -2547,18 +2547,14 @@ namespace game_framework {
 			ball[num].OnShow(&gameMap);				// 貼上第i號球*/
 			Jball[num].OnShow(&gameMap);				// 貼上第i號球*/
 		}
-		for (num = 0; num <= 23; num++) {
+		for (num = 0; num <= 25; num++) {
 			coin[num].OnShow(&gameMap);				// 貼上第i號球*/
 		}
-		for (num = 0; num <= 17; num++) {
-			coin[num].OnShow(&gameMap);				// 貼上第i號球*/
-		}
-		for (num = 0; num <= 5; num++) {
+
+		for (num = 0; num <= 10; num++) {
 			health[num].OnShow(&gameMap);				// 貼上第i號球*/
 			BOSS[num].OnShow(&gameMap);				// 貼上第i號球*/
 			Ammo[num].OnShow(&gameMap);				// 貼上第i號球*/
-
-
 		}
 
 		for (num = 0; num <=20; num++) {

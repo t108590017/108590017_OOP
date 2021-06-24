@@ -202,11 +202,11 @@ IDB_HEALTH              BITMAP                  "..\\Bitmaps\\heal.bmp"
 
 IDB_BOSS                BITMAP                  "..\\Bitmaps\\Boss_gay.bmp"
 
-IDB_Rifle               BITMAP                  "D:\\NTUT\\OOP¹CÀ¸\\OOP 0416\\Bitmaps\\gun_rifle.bmp"
+IDB_Rifle               BITMAP                  "..\\Bitmaps\\gun_rifle.bmp"
 
-IDB_Bullet              BITMAP                  "D:\\NTUT\\OOP¹CÀ¸\\OOP 0416\\Bitmaps\\bullets_rifle.bmp"
+IDB_Bullet              BITMAP                  "..\\Bitmaps\\bullets_rifle.bmp"
 
-IDB_JBall               BITMAP                  "D:\\NTUT\\OOP¹CÀ¸\\OOP 0416\\Bitmaps\\Boss_gay_Attack2.bmp"
+IDB_JBall               BITMAP                  "..\\Bitmaps\\Boss_gay_Attack2.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -376,7 +376,7 @@ END
 
 #ifdef APSTUDIO_INVOKED
 GUIDELINES DESIGNINFO
-BEGIN
+BEGINS
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7

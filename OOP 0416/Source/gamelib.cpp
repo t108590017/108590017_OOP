@@ -499,7 +499,7 @@ void CGameState::OnCycle() // Template Method
 CGame CGame::instance;
 
 CGame::CGame()
-: NUM_GAME_STATES(7)
+: NUM_GAME_STATES(6)
 {
 	running = true;
 	suspended = false;

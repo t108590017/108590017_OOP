@@ -41,7 +41,7 @@ namespace game_framework {
 	{
 		const int X_POS = 64;
 		const int Y_POS = 1920;
-		if (m->getLevel() == 6 ) {
+		if (m->getLevel() == 6) {
 			y = 1920 - 18 * 64;
 
 		}
@@ -52,7 +52,13 @@ namespace game_framework {
 		else {
 			y = Y_POS;
 		}
-		x = X_POS;
+		if (m->getLevel() == 8) {
+			x = 5 * 64;
+
+		}
+		else{
+			x = X_POS;
+		}
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 	}
 

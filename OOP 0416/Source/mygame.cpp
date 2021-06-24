@@ -1060,9 +1060,7 @@ namespace game_framework {
 				health[num].SetXY(0, 0);
 				health[num].SetDelay(0);
 				health[num].SetIsAlive(false);
-				BOSS[num].SetXY(0, 0);
-				BOSS[num].SetDelay(0);
-				BOSS[num].SetIsAlive(false);
+
 				Shoot[num].SetXY(0, 0);
 				Shoot[num].SetDelay(0);
 				Shoot[num].SetIsAlive(false);
@@ -1081,6 +1079,9 @@ namespace game_framework {
 				Jball[num].SetDelay(0);
 				Jball[num].SetIsAlive(false);
 			}
+			BOSS[0].SetXY(120*64, 35*64);
+			BOSS[0].SetDelay(0);
+			BOSS[0].SetIsAlive(true);
 			ball[0].SetXY(12 * 64, 35 * 64);
 			ball[0].SetDelay(0);
 			ball[0].SetIsAlive(true);
@@ -1236,9 +1237,7 @@ namespace game_framework {
 			health[num].SetXY(0, 0);
 			health[num].SetDelay(0);
 			health[num].SetIsAlive(false);
-			BOSS[num].SetXY(0, 0);
-			BOSS[num].SetDelay(0);
-			BOSS[num].SetIsAlive(false);
+
 			Shoot[num].SetXY(0, 0);
 			Shoot[num].SetDelay(0);
 			Shoot[num].SetIsAlive(false);
@@ -1428,7 +1427,7 @@ namespace game_framework {
 			CAudio::Instance()->Play(AUDIO_EAT);
 			coin[0].setLeft(1);
 		}
-		if (coin[17].IsAlive() && coin[16].HitEraser(&eraser)) {
+		if (coin[17].IsAlive() && coin[17].HitEraser(&eraser)) {
 			coin[17].SetIsAlive(false);
 			CAudio::Instance()->Play(AUDIO_EAT);
 			coin[0].setLeft(1);
